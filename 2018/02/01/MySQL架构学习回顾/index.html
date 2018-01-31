@@ -42,7 +42,7 @@
 		
 		<div class="header-div">
 		    <h1><a href="/">Tomgs&#39;s blog</a></h1>
-		    <h2><a href="/">tomgsV5</a></h2>
+		    <h2><a href="/">tomgsV5@gmail.com</a></h2>
 		</div>
 	</div>
 	<div class = "alignright col-two">
@@ -94,8 +94,7 @@
         <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#逻辑架构"><span class="toc-text">逻辑架构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#锁"><span class="toc-text">锁</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#事务四大特性"><span class="toc-text">事务四大特性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#事务四种隔离级别"><span class="toc-text">事务四种隔离级别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#死锁"><span class="toc-text">死锁</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#事务日志"><span class="toc-text">事务日志</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#事务"><span class="toc-text">事务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#多版本并发控制-MVCC"><span class="toc-text">多版本并发控制(MVCC)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#存储引擎"><span class="toc-text">存储引擎</span></a></li></ol>
     </div>
 
-        <p>[TOC]</p>
-<h1 id="逻辑架构"><a href="#逻辑架构" class="headerlink" title="逻辑架构"></a>逻辑架构</h1><p>了解MySQL的架构有助于深入理解MySQL服务器，下图是MySQL的三层逻辑架构图（图片来自于网络）。<br><img src="http://p1.pstatp.com/large/5e6f000615c7616a86c1" alt="image"></p>
+        <h1 id="逻辑架构"><a href="#逻辑架构" class="headerlink" title="逻辑架构"></a>逻辑架构</h1><p>了解MySQL的架构有助于深入理解MySQL服务器，下图是MySQL的三层逻辑架构图（图片来自于网络）。<br><img src="http://p1.pstatp.com/large/5e6f000615c7616a86c1" alt="image"></p>
 <p>第一层用于对客户端的连接处理、安全认证、授权等。每个客户端连接都会在服务端拥有一个线程，每个连接发起的查询都会在对应的单独线程中执行。</p>
 <p>第二层包含了MySQL的核心服务功能，包括查询解析、分析、查询缓存、内置函数、存储过程、触发器、视图等。当客户端发起请求时，如果是SELECT操作，MySQL会先检查是否命中查询缓存，命中则直接返回查询缓存中的数据；否则，MySQL会解析查询并创建对应的内部数据结构(解析树)，执行各种优化，然后执行。</p>
 <p>第三层包含了存储引擎，存储引擎负责数据的存储和提取。MySQL中有很多种不同类型的存储引擎，每个存储引擎各不相同，MySQL服务器通过API与存储引擎通信，屏蔽了各种存储引擎之间的差异。</p>
