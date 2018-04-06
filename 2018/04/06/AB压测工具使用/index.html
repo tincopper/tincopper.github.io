@@ -1,0 +1,414 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>AB压测工具使用 | Tomgs&#39;s blog</title>
+  <meta name="author" content="tomgs">
+  
+  <meta name="description" content="Java学习">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="AB压测工具使用"/>
+  <meta property="og:site_name" content="Tomgs&#39;s blog"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link rel="alternate" href="/atom.xml" title="Tomgs&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <!-- wumiiVerification -->
+  <meta name="wumiiVerification" content="fb50a101-84fe-4ca2-91a7-ae8cf792978b" />
+  <meta name="wumiiVerification" content="d73b5866-c390-4156-a4dd-51b526b5335e" />
+  <!-- favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!-- Font-Awesome -->
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+
+</head>
+
+<body>
+  <header id="header"><div class= "header-content inner">
+	<div class = "alignleft col-one">
+		
+			<div class='avatar'>
+				<img src = "/img/default/avatar.jpg">
+              </div>
+		
+		<div class="header-div">
+		    <h1><a href="/">Tomgs&#39;s blog</a></h1>
+		    <h2><a href="/">tomgsV5@gmail.com</a></h2>
+		</div>
+	</div>
+	<div class = "alignright col-two">
+		
+	</div>
+	<div class="clearfix"></div>
+</div>
+
+<div class= "header-nav">
+	<div class='header-nav-content inner'>
+		<div id="main-nav" class="alignleft">
+		    		
+		    		  <a href="/"><i class="fa fa-home"></i>首页</a>
+		    		
+		    		  <a href="/archives"><i class="fa fa-archive"></i>归档</a>
+		    		
+		    		  <a href="/categories/java"><i class="fa fa-book"></i>电子书</a>
+		    		
+		</div>
+		<div id="sub-nav" class="alignright">
+		    
+		      <a href="/about"><i class="fa fa-user"></i>关于我</a>
+		    
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</div>
+</header>
+  
+    <div id="content" class="inner">
+      <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+        <div class="icon"></div>
+        
+        <time datetime="2018-04-06T03:02:17.000Z"><a href="/2018/04/06/AB压测工具使用/">2018-04-06</a></time>
+        
+  
+    <h1 class="title">AB压测工具使用</h1>
+  
+
+    </header>
+
+    <div class="entry">
+      
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AB压测工具的使用"><span class="toc-text">AB压测工具的使用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是AB"><span class="toc-text">什么是AB</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装问题"><span class="toc-text">安装问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ab帮助命令"><span class="toc-text">ab帮助命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ab测试返回描述"><span class="toc-text">ab测试返回描述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ab-压测过程中的常用命令"><span class="toc-text">ab 压测过程中的常用命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AB压测实战"><span class="toc-text">AB压测实战</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文献"><span class="toc-text">参考文献</span></a></li></ol>
+    </div>
+
+        <h1 id="AB压测工具的使用"><a href="#AB压测工具的使用" class="headerlink" title="AB压测工具的使用"></a>AB压测工具的使用</h1><p>官网：<br><br><a href="http://mirror.bit.edu.cn/apache/httpd/" target="_blank" rel="noopener">http://mirror.bit.edu.cn/apache/httpd/</a><br><br><a href="http://httpd.apache.org/docs/2.4/programs/ab.html" target="_blank" rel="noopener">http://httpd.apache.org/docs/2.4/programs/ab.html</a><br><br><a href="http://httpd.apache.org/docs/2.2/" target="_blank" rel="noopener">http://httpd.apache.org/docs/2.2/</a><br></p>
+<h1 id="什么是AB"><a href="#什么是AB" class="headerlink" title="什么是AB"></a>什么是AB</h1><p>它是Apache服务器的一个命令，ab命令模拟多线程并发请求，测试服务器负载压力，也可以测试nginx、lighthttp、IIS等其它Web服务器的压力。<br>ab命令对发出负载的计算机要求很低，既不会占用很多CPU，也不会占用太多的内存，但却会给目标服务器造成巨大的负载，因此是某些DDOS攻击之必备良药，老少皆宜。自己使用也须谨慎。否则压测负载过多，造成目标服务器直接因内存耗光死机，而不得不硬重启，得不偿失。<br>在带宽不足的情况下，最好是本机进行测试，建议使用内网的另一台或者多台服务器通过内网进行测试，这样得出的数据，准确度会高很多。远程对web服务器进行压力测试，往往效果不理想（因为网络延时过大或带宽不足）</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>首先得进入官网下载如下的安装文件。</p>
+<ol>
+<li><code>tar -zxvf httpd-2.2.31 .tar.gz</code></li>
+<li><code>cd http-2.2.31</code></li>
+<li><code>./configure --prefix=/payment/tools/httpd --with-apr=/payment/tools/apr-1.5.2/bin/apr-1-config --with-apr-util=/payment/tools/apr-util-1.5.4/bin/apu-1-config --with-pcre=/payment/tools/pcre-7.9/bin/pcre-config --with-included-apr</code></li>
+<li><code>make</code></li>
+<li><code>make install</code></li>
+</ol>
+<p><strong>PS:</strong> 前提需要先安装了<code>apr-1.5.2.tar.gz</code>、<code>apr-util-1.5.4.tar.gz</code>、<code>pcre-7.9.tar.gz</code></p>
+<blockquote>
+<p>安装apr<br><br><code>./configure --prefix=/payment/tools/apr-1.5.2</code><br><br><code>make</code><br><br><code>make install</code><br></p>
+<p>安装apr-util<br><br><code>./configure --prefix=/payment/tools/apr-util-1.5.4 --with-apr=/payment/tools/apr-1.5.2/bin/apr-1-config</code> <br><br><code>make</code><br><br><code>make install</code></p>
+<p>同理pcre也是这种安装方法。</p>
+</blockquote>
+<h2 id="安装问题"><a href="#安装问题" class="headerlink" title="安装问题"></a>安装问题</h2><p>如果到了make后出现如下错误，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">make[2]: *** [htpasswd] Error 1</span><br><span class="line">make[2]: Leaving directory `/usr/local/directadmin/custombuild/httpd-2.0.63/support&apos;</span><br><span class="line">make[1]: *** [all-recursive] Error 1</span><br><span class="line">make[1]: Leaving directory `/usr/local/directadmin/custombuild/httpd-2.0.63/support&apos;</span><br><span class="line">make: *** [all-recursive] Error 1</span><br></pre></td></tr></table></figure></p>
+<p><strong>解决办法：</strong><br><br>在configure后面添加一个–with-included-apr，完美解决上述问题。</p>
+<h1 id="ab帮助命令"><a href="#ab帮助命令" class="headerlink" title="ab帮助命令"></a>ab帮助命令</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">Usage: ./ab [options] [http://]hostname[:port]/path</span><br><span class="line">Options are:</span><br><span class="line">    -n requests     Number of requests to perform</span><br><span class="line">    -c concurrency  Number of multiple requests to make</span><br><span class="line">    -t timelimit    Seconds to max. wait for responses</span><br><span class="line">    -b windowsize   Size of TCP send/receive buffer, in bytes</span><br><span class="line">    -p postfile     File containing data to POST. Remember also to set -T</span><br><span class="line">    -u putfile      File containing data to PUT. Remember also to set -T</span><br><span class="line">    -T content-type Content-type header for POSTing, eg.</span><br><span class="line">                    &apos;application/x-www-form-urlencoded&apos;</span><br><span class="line">                    Default is &apos;text/plain&apos;</span><br><span class="line">    -v verbosity    How much troubleshooting info to print</span><br><span class="line">    -w              Print out results in HTML tables</span><br><span class="line">    -i              Use HEAD instead of GET</span><br><span class="line">    -x attributes   String to insert as table attributes</span><br><span class="line">    -y attributes   String to insert as tr attributes</span><br><span class="line">    -z attributes   String to insert as td or th attributes</span><br><span class="line">    -C attribute    Add cookie, eg. &apos;Apache=1234. (repeatable)</span><br><span class="line">    -H attribute    Add Arbitrary header line, eg. &apos;Accept-Encoding: gzip&apos;</span><br><span class="line">                    Inserted after all normal header lines. (repeatable)</span><br><span class="line">    -A attribute    Add Basic WWW Authentication, the attributes</span><br><span class="line">                    are a colon separated username and password.</span><br><span class="line">    -P attribute    Add Basic Proxy Authentication, the attributes</span><br><span class="line">                    are a colon separated username and password.</span><br><span class="line">    -X proxy:port   Proxyserver and port number to use</span><br><span class="line">    -V              Print version number and exit</span><br><span class="line">    -k              Use HTTP KeepAlive feature</span><br><span class="line">    -d              Do not show percentiles served table.</span><br><span class="line">    -S              Do not show confidence estimators and warnings.</span><br><span class="line">    -g filename     Output collected data to gnuplot format file.</span><br><span class="line">    -e filename     Output CSV file with percentages served</span><br><span class="line">    -r              Don&apos;t exit on socket receive errors.</span><br><span class="line">    -h              Display usage information (this message)</span><br></pre></td></tr></table></figure>
+<h1 id="ab测试返回描述"><a href="#ab测试返回描述" class="headerlink" title="ab测试返回描述"></a>ab测试返回描述</h1><table>
+<thead>
+<tr>
+<th>返回关键字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server Software</td>
+<td>The value, if any, returned in the server HTTP header of the first successful response. This includes all characters in the header from beginning to the point a character with decimal value of 32 (most notably: a space or CR/LF) is detected. </td>
+</tr>
+<tr>
+<td>Server Hostname</td>
+<td>The DNS or IP address given on the command line </td>
+</tr>
+<tr>
+<td>Server Port</td>
+<td>The port to which ab is connecting. If no port is given on the command line, this will default to 80 for http and 443 for https. </td>
+</tr>
+<tr>
+<td>SSL/TLS Protocol</td>
+<td>The protocol parameters negotiated between the client and server. This will only be printed if SSL is used. </td>
+</tr>
+<tr>
+<td>Document Path</td>
+<td>The request URI parsed from the command line string. </td>
+</tr>
+<tr>
+<td>Document Length</td>
+<td>This is size in bytes of the first succesfully returning document. If the document length changes during testing, the response is considered an error. </td>
+</tr>
+<tr>
+<td>Concurrency Level</td>
+<td>The number of concurrent clients used during the test </td>
+</tr>
+<tr>
+<td>Time taken for tests</td>
+<td>This is the time taken from the moment the first socket connection is created to the moment the last response is recieved </td>
+</tr>
+<tr>
+<td>Complete requests</td>
+<td>The number of successful responses recieved </td>
+</tr>
+<tr>
+<td>Failed requests</td>
+<td>The number of requests that were considered a failure. If the number is greater than zero, another line will be printed showing the numer of requests that failed due to connecting, reading, incorrect content length, or exceptions. </td>
+</tr>
+<tr>
+<td>Write errors</td>
+<td>The number of errors that failed during write (broken pipe). </td>
+</tr>
+<tr>
+<td>Non-2xx responses</td>
+<td>The number of responses that were not in the 200 series of response codes. If all responses were 200, this field is not printed. </td>
+</tr>
+<tr>
+<td>Keep-Alive requests</td>
+<td>The number of connections that resulted in Keep-Alive requests </td>
+</tr>
+<tr>
+<td>Total body sent</td>
+<td>If configured to send data as part of the test, this is the total number of bytes sent during the tests. This field is omitted if the test did not include a body to send. </td>
+</tr>
+<tr>
+<td>Total transferred</td>
+<td>The total number of bytes received from the server. This number is essentially the number of bytes sent over the wire. </td>
+</tr>
+<tr>
+<td>HTML transferred</td>
+<td>The total number of document bytes received from the server. This number excludes bytes received in HTTP headers </td>
+</tr>
+<tr>
+<td>Requests per second</td>
+<td>This is the number of requests per second. This value is the result of dividing the number of requests by the total time taken </td>
+</tr>
+<tr>
+<td>Time per request</td>
+<td>The average time spent per request. The first value is calculated with the formula concurrency <em> timetaken </em> 1000 / done(这里指的是并发数) while the second value is calculated with the formula timetaken * 1000 / done <br>备注：这里测试结果会有两个值第一个Time per request代表的是所有请求响应所花费的时间，第二个值是并发的请求的平均时间，可以看到其结果是timeaken响应花费的时间除以并发数。</td>
+</tr>
+<tr>
+<td>Transfer rate</td>
+<td>The rate of transfer as calculated by the formula totalread / 1024 / timetaken </td>
+</tr>
+</tbody>
+</table>
+<h1 id="ab-压测过程中的常用命令"><a href="#ab-压测过程中的常用命令" class="headerlink" title="ab 压测过程中的常用命令"></a>ab 压测过程中的常用命令</h1><ol>
+<li><p><code>./ab -n [请求数] -c [concurrency并发数] URL</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ab -n 10 -c 10 http://www.baidu.com (-n 10模拟10个请求，-c 10 模拟10个并发数，去访问http://www.baidu.com，相当于模拟10个用户同时去访问百度)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>./ab -t [等待请求响应最大时间，单位秒] -c [并发数] URL</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ab -t 1 -c 10 http://www.baidu.com (-t 1模拟发一秒钟请求，-c 10 一次发10个请求数，去访问http://www.baidu.com，相当于一次10个人同时去访问百度持续一秒钟)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果需要带参数进行POST访问，则需要配合-T 和 -p 选项<br><br><code>./ab -n [请求数] -c [concurrency并发数] -T &quot;content-type&quot; -p postFile.txt URL</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./ab -n 100 -c 100 -T &quot;application/json&quot; -p /payment/param/getCashier.txt</span><br><span class="line"> http://171.0.0.54:18000/payment-api/pay/cashier</span><br><span class="line">模拟100个请求同时使用POST请求发起对http://171.0.0.54:18000/payment-api/pay/cashier的访问</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="AB压测实战"><a href="#AB压测实战" class="headerlink" title="AB压测实战"></a>AB压测实战</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">#模拟10个用户并发对http://171.0.0.54:18000/gray/unPayOrder_c.html进行访问</span><br><span class="line">payment@test1:~/tools/httpd/bin&gt; ./ab -n 10 -c 10 http://171.0.0.54:18000/gray/unPayOrder_c.html</span><br><span class="line"></span><br><span class="line">This is ApacheBench, Version 2.3 &lt;$Revision: 655654 $&gt;</span><br><span class="line">Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/</span><br><span class="line">Licensed to The Apache Software Foundation, http://www.apache.org/</span><br><span class="line">Benchmarking 171.0.0.54 (be patient).....done</span><br><span class="line">Server Software:        openresty/1.11.2.5</span><br><span class="line">Server Hostname:        171.0.0.54</span><br><span class="line">Server Port:            18000</span><br><span class="line">Document Path:          /gray/unPayOrder_c.html</span><br><span class="line">Document Length:        7608 bytes  HTTP响应正文数据长度</span><br><span class="line">Concurrency Level:      10          并发级别</span><br><span class="line">Time taken for tests:   0.001 seconds  处理完这些请求所花费的时间</span><br><span class="line">Complete requests:      10           完成请求数</span><br><span class="line">Failed requests:        0            失败请求数</span><br><span class="line">Write errors:           0    </span><br><span class="line">#网络总传输量         </span><br><span class="line">Total transferred:      77360 bytes</span><br><span class="line">HTML transferred:       76080 bytes</span><br><span class="line">#吞吐量-每秒请求数QPS</span><br><span class="line">Requests per second:    7698.23 [#/sec] (mean)  </span><br><span class="line">#服务器收到请求，响应页面要花费的时间</span><br><span class="line">Time per request:       1.299 [ms] (mean)</span><br><span class="line">#并发的每个请求所耗费的平均时间</span><br><span class="line">Time per request:       0.130 [ms] (mean, across all concurrent requests)                                  --请求平均耗时</span><br><span class="line">Transfer rate:          58157.72 [Kbytes/sec] received</span><br><span class="line">Connection Times (ms)</span><br><span class="line">              min  mean[+/-sd] median   max</span><br><span class="line">Connect:        0    0   0.0      0       0</span><br><span class="line">Processing:     0    1   0.2      1       1</span><br><span class="line">Waiting:        0    1   0.3      1       1</span><br><span class="line">Total:          0    1   0.2      1       1</span><br><span class="line">#整个场景中所有请求的响应情况,90%的用户请求响应小于1ms,95%的用户请求响应小于1.2ms,100%的用户请求响应小于3ms</span><br><span class="line">Percentage of the requests served within a certain time (ms)</span><br><span class="line">  50%      1</span><br><span class="line">  66%      1</span><br><span class="line">  75%      1</span><br><span class="line">  80%      1</span><br><span class="line">  90%      1.2</span><br><span class="line">  95%      1.2</span><br><span class="line">  98%      2</span><br><span class="line">  99%      2</span><br><span class="line"> 100%      3 (longest request)</span><br></pre></td></tr></table></figure>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a href="http://www.cnblogs.com/gumuzi/p/5617232.html" target="_blank" rel="noopener">http://www.cnblogs.com/gumuzi/p/5617232.html</a> 《Apache ab性能测试结果分析》<br><br><a href="http://blog.csdn.net/hexuan1/article/details/45191549" target="_blank" rel="noopener">http://blog.csdn.net/hexuan1/article/details/45191549</a>  《运行ab测试时socket: Too many open files (24)的解决办法》<br><br><a href="http://eip.teamshub.com/t/3158668" target="_blank" rel="noopener">http://eip.teamshub.com/t/3158668</a> 《性能压测工具[AB]安装》</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/工具/">工具</a>, <a href="/categories/工具/压测/">压测</a>
+  </div>
+
+        
+  <div class="tags">
+    <a href="/tags/ab压测工具/">ab压测工具</a>
+  </div>
+
+        <div class = "counter">
+  <span id="busuanzi_container_page_pv" style="display:none">
+      总访问&nbsp<span id="busuanzi_value_page_pv"></span>&nbsp次
+  </span>
+</div>
+        
+  <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+  <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+  
+<section id = "relate">
+	
+                <div id=""></div>
+	
+</section>
+
+
+  
+    <section id="comment">
+    <!--   <h1 class="title">留言</h1> -->
+    
+        <script type="text/javascript" id="wumiiComments">
+            var wumiiPermaLink = "https://tincopper.github.io/2018/04/06/AB压测工具使用/"; //请用代码生成文章永久的链接
+            var wumiiTitle = "AB压测工具使用"; //请用代码生成文章标题
+            var wumiiSitePrefix = ""; 
+            var wumiiCommentParams = "&pf=JAVASCRIPT";
+        </script>
+        <script type="text/javascript" src="http://widget.wumii.cn/ext/cw/widget"></script>
+      
+    </section>
+
+
+
+
+</div></div>
+      <aside id="sidebar" class="alignright">
+  
+<div class="widget tag">
+  <h3 class="title" id="categories">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/JVM/">JVM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/集合框架/">集合框架</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/压测/">压测</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程/">编程</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程/hexo教程/">hexo教程</a><span class="category-list-count">1</span></li></ul></li></ul> 
+</div>
+ 
+
+
+  <div class="widget tag">
+  <h3 class="title">微信公众账号</h3>
+    <ul class="entry">
+      <img src="/img/default/qrcode.jpg" alt="欢迎关注个人公众账号" style= "width: 100%">
+    </ul>
+</div>
+
+  
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/JVM/">JVM</a><small>1</small></li>
+  
+    <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
+  
+    <li><a href="/tags/ab压测工具/">ab压测工具</a><small>1</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>2</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/tags/集合框架/">集合框架</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+
+  
+  <div class="widget tag">
+    <h3 class="title">归档</h3>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">公元 2018 年</a><span class="archive-list-count">7</span></li></ul>
+  </div>
+
+</aside>
+      <div class="clearfix"></div>
+    </div>
+  
+  <footer id="footer"><div class="footer-content inner">
+  <div class="alignleft">
+  
+    &copy; 2018 tomgs
+    
+  </div>
+  <!-- <div class="alignright">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme
+    <a href="https://github.com/pengloo53/Hexo-theme-light_cn">light_cn</a>, 
+    <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  </div> -->
+  
+  <div class="visit">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </div>
+  
+  <div class="clearfix"></div>
+</div>
+</footer>
+  <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<!-- calendar widget -->
+
+
+<!-- 『不蒜子』计数服务 -->
+<script async src="http://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?c4ec2c7a97d8bada21b93c3a78422b39";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<!-- wumii关联推荐 -->
+<script type="text/javascript" src="http://widget.wumii.cn/ext/relatedItemsWidget"></script>
+
+<!-- 百度推荐 -->
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?"c4ec2c7a97d8bada21b93c3a78422b39;
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<!-- 返回顶部 -->
+<div id="toTop">
+	<a href="#">▲</a>
+	<a href="#footer">▼</a>
+</div>
+
+<!-- 站内搜索-Swiftype -->
+<!-- <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','sC-iNFrvTTNtiXEVNwo1','2.0.0');
+</script> -->
+
+<!-- fancybox -->
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+</body>
+</html>
+<!-- 
+<a href="https://github.com/tincopper" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub"></a>
+-->
