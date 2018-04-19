@@ -1,0 +1,307 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>hexo常见问题解决 | Tomgs&#39;s blog</title>
+  <meta name="author" content="tomgs">
+  
+  <meta name="description" content="Java学习">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="hexo常见问题解决"/>
+  <meta property="og:site_name" content="Tomgs&#39;s blog"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link rel="alternate" href="/atom.xml" title="Tomgs&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <!-- wumiiVerification -->
+  <meta name="wumiiVerification" content="fb50a101-84fe-4ca2-91a7-ae8cf792978b" />
+  <meta name="wumiiVerification" content="d73b5866-c390-4156-a4dd-51b526b5335e" />
+  <!-- favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!-- Font-Awesome -->
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+
+</head>
+
+<body>
+  <header id="header"><div class= "header-content inner">
+	<div class = "alignleft col-one">
+		
+			<div class='avatar'>
+				<img src = "/img/default/avatar.jpg">
+              </div>
+		
+		<div class="header-div">
+		    <h1><a href="/">Tomgs&#39;s blog</a></h1>
+		    <h2><a href="/">tomgsV5@gmail.com</a></h2>
+		</div>
+	</div>
+	<div class = "alignright col-two">
+		
+	</div>
+	<div class="clearfix"></div>
+</div>
+
+<div class= "header-nav">
+	<div class='header-nav-content inner'>
+		<div id="main-nav" class="alignleft">
+		    		
+		    		  <a href="/"><i class="fa fa-home"></i>首页</a>
+		    		
+		    		  <a href="/archives"><i class="fa fa-archive"></i>归档</a>
+		    		
+		    		  <a href="/categories/java"><i class="fa fa-book"></i>电子书</a>
+		    		
+		</div>
+		<div id="sub-nav" class="alignright">
+		    
+		      <a href="/about"><i class="fa fa-user"></i>关于我</a>
+		    
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</div>
+</header>
+  
+    <div id="content" class="inner">
+      <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+        <div class="icon"></div>
+        
+        <time datetime="2018-03-14T14:42:23.000Z"><a href="/2018/03/14/3、hexo常见问题解决/">2018-03-14</a></time>
+        
+  
+    <h1 class="title">hexo常见问题解决</h1>
+  
+
+    </header>
+
+    <div class="entry">
+      
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hexo"><span class="toc-text">hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题"><span class="toc-text">问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-page下怎么放置多篇文章？"><span class="toc-text">1. page下怎么放置多篇文章？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-post目录下面的文章怎么用目录进行归类？"><span class="toc-text">2. _post目录下面的文章怎么用目录进行归类？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-TypeError-Cannot-set-property-‘lastIndex’-of-undefined-错误解决"><span class="toc-text">3. TypeError: Cannot set property ‘lastIndex’ of undefined 错误解决</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-首页文章如何只显示一部分？"><span class="toc-text">4.首页文章如何只显示一部分？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5"><span class="toc-text">5.</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+        <h1 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h1><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="1-page下怎么放置多篇文章？"><a href="#1-page下怎么放置多篇文章？" class="headerlink" title="1. page下怎么放置多篇文章？"></a>1. page下怎么放置多篇文章？</h3><blockquote>
+<p>手动进行文档分类，就是将md文件放到_post文件夹下不同的categories文件夹下，hexo g的时候，还是能够生成的。但是如果使用hexo new命令来创建的话，还是没有找到自动放到对应categories文件夹的方法<br><a id="more"></a></p>
+<h3 id="2-post目录下面的文章怎么用目录进行归类？"><a href="#2-post目录下面的文章怎么用目录进行归类？" class="headerlink" title="2. _post目录下面的文章怎么用目录进行归类？"></a>2. _post目录下面的文章怎么用目录进行归类？</h3><p>使用Hexo的内建归档categories<br>作者：孔晨皓<br>链接：<a href="https://www.zhihu.com/question/33324071/answer/149081141" target="_blank" rel="noopener">https://www.zhihu.com/question/33324071/answer/149081141</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</blockquote>
+<p>思路：在script里写个遍历所有post的脚本筛选出你要简历目录的文章（根据tag或者categories）然后生成一个页面到 source/xxx.md 或者source/xxx.html你可以把这个脚本注册到生成文章前，这样就会跟着post一起渲染。<br>具体步骤：博客根目录建script文件夹里面新建<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">xxx.jshexo.extend.generator.register(<span class="string">'name'</span>,</span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">locals</span>) </span>&#123;    </span><br><span class="line">    <span class="keyword">return</span> &#123;        </span><br><span class="line">        path: <span class="string">'./source/xxx.md'</span>,        </span><br><span class="line">        data: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;            </span><br><span class="line">            <span class="keyword">var</span> posts = locals.posts.sort(<span class="string">'-date'</span>); <span class="keyword">var</span> d = <span class="string">""</span>;            posts.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">post</span>) </span>&#123;       <span class="comment">//在这里筛选 然后把信息写入d变量  </span></span><br><span class="line">        &#125;);            </span><br><span class="line">        <span class="keyword">return</span> d;<span class="comment">//往xxx.md写入d        </span></span><br><span class="line">    &#125;    </span><br><span class="line">&#125;;&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>看下官方文档很容易明白的按照上面的改改就行—手机没排版，没测试，不过该思路可行如果想高端点就把这个改成插件，也一样的</p>
+<h3 id="3-TypeError-Cannot-set-property-‘lastIndex’-of-undefined-错误解决"><a href="#3-TypeError-Cannot-set-property-‘lastIndex’-of-undefined-错误解决" class="headerlink" title="3. TypeError: Cannot set property ‘lastIndex’ of undefined 错误解决"></a>3. TypeError: Cannot set property ‘lastIndex’ of undefined 错误解决</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br><span class="line">INFO  Start processing</span><br><span class="line">FATAL Something&apos;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span><br><span class="line">TypeError: Cannot set property &apos;lastIndex&apos; of undefined</span><br><span class="line">    at highlight (F:\blog\init\node_modules\highlight.js\lib\highlight.js:511:35)</span><br><span class="line">    at F:\blog\init\node_modules\highlight.js\lib\highlight.js:561:21</span><br><span class="line">    at Array.forEach (&lt;anonymous&gt;)</span><br><span class="line">    at Object.highlightAuto (F:\blog\init\node_modules\highlight.js\lib\highlight.js:560:40)</span><br><span class="line">    at F:\blog\init\node_modules\hexo-util\lib\highlight.js:117:25</span><br><span class="line">    at highlight (F:\blog\init\node_modules\hexo-util\lib\highlight.js:120:7)</span><br><span class="line">    at highlightUtil (F:\blog\init\node_modules\hexo-util\lib\highlight.js:22:14)</span><br><span class="line">    at F:\blog\init\node_modules\hexo\lib\plugins\filter\before_post_render\backtick_code_block.js:62:15</span><br><span class="line">    at String.replace (&lt;anonymous&gt;)</span><br><span class="line">    at Hexo.backtickCodeBlock (F:\blog\init\node_modules\hexo\lib\plugins\filter\before_post_render\backtick_code_block.js:15:31)</span><br><span class="line">    at Hexo.tryCatcher (F:\blog\init\node_modules\bluebird\js\release\util.js:16:23)</span><br><span class="line">    at Hexo.&lt;anonymous&gt; (F:\blog\init\node_modules\bluebird\js\release\method.js:15:34)</span><br><span class="line">    at F:\blog\init\node_modules\hexo\lib\extend\filter.js:68:35</span><br><span class="line">    at tryCatcher (F:\blog\init\node_modules\bluebird\js\release\util.js:16:23)</span><br><span class="line">    at Object.gotValue (F:\blog\init\node_modules\bluebird\js\release\reduce.js:155:18)</span><br><span class="line">    at Object.gotAccum (F:\blog\init\node_modules\bluebird\js\release\reduce.js:144:25)</span><br><span class="line">    at Object.tryCatcher (F:\blog\init\node_modules\bluebird\js\release\util.js:16:23)</span><br><span class="line">    at Promise._settlePromiseFromHandler (F:\blog\init\node_modules\bluebird\js\release\promise.js:512:31)</span><br><span class="line">    at Promise._settlePromise (F:\blog\init\node_modules\bluebird\js\release\promise.js:569:18)</span><br><span class="line">    at Promise._settlePromiseCtx (F:\blog\init\node_modules\bluebird\js\release\promise.js:606:10)</span><br><span class="line">    at Async._drainQueue (F:\blog\init\node_modules\bluebird\js\release\async.js:138:12)</span><br><span class="line">    at Async._drainQueues (F:\blog\init\node_modules\bluebird\js\release\async.js:143:10)</span><br></pre></td></tr></table></figure>
+<p>解决办法：</p>
+<p>修改配置文件_config.yml，注意不是主题里面的配置文件！<br>把auto_detect设置为false和tab_replace也改为false ，即可解决。</p>
+<h3 id="4-首页文章如何只显示一部分？"><a href="#4-首页文章如何只显示一部分？" class="headerlink" title="4.首页文章如何只显示一部分？"></a>4.首页文章如何只显示一部分？</h3><p>这个只要在文章中加上<code>&lt;!--more--&gt;</code>标记 ，该标记以后部分就不在显示了，只有展开全部才显示，这是hexo定义的。 </p>
+<p>这样每次添加这个标记有点麻烦，也可以自定义添加，不过可能会导致排版错乱，自定义配置链接<br><a href="https://twiceyuan.com/2014/05/25/hexo%E8%87%AA%E5%8A%A8%E6%B7%BB%E5%8A%A0readmore%E6%A0%87%E8%AE%B0/" target="_blank" rel="noopener">https://twiceyuan.com/2014/05/25/hexo%E8%87%AA%E5%8A%A8%E6%B7%BB%E5%8A%A0readmore%E6%A0%87%E8%AE%B0/</a></p>
+<h3 id="5"><a href="#5" class="headerlink" title="5."></a>5.</h3>
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/编程/">编程</a>, <a href="/categories/编程/hexo教程/">hexo教程</a>
+  </div>
+
+        
+  <div class="tags">
+    <a href="/tags/hexo/">hexo</a>
+  </div>
+
+        <div class = "counter">
+  <span id="busuanzi_container_page_pv" style="display:none">
+      总访问&nbsp<span id="busuanzi_value_page_pv"></span>&nbsp次
+  </span>
+</div>
+        
+  <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+  <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+  
+<section id = "relate">
+	
+                <div id=""></div>
+	
+</section>
+
+
+  
+    <section id="comment">
+    <!--   <h1 class="title">留言</h1> -->
+    
+        <script type="text/javascript" id="wumiiComments">
+            var wumiiPermaLink = "https://tincopper.github.io/2018/03/14/3、hexo常见问题解决/"; //请用代码生成文章永久的链接
+            var wumiiTitle = "hexo常见问题解决"; //请用代码生成文章标题
+            var wumiiSitePrefix = ""; 
+            var wumiiCommentParams = "&pf=JAVASCRIPT";
+        </script>
+        <script type="text/javascript" src="http://widget.wumii.cn/ext/cw/widget"></script>
+      
+    </section>
+
+
+
+
+</div></div>
+      <aside id="sidebar" class="alignright">
+  
+<div class="widget tag">
+  <h3 class="title" id="categories">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/JVM/">JVM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/集合框架/">集合框架</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/压测/">压测</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程/">编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程/hexo教程/">hexo教程</a><span class="category-list-count">3</span></li></ul></li></ul> 
+</div>
+ 
+
+
+  <div class="widget tag">
+  <h3 class="title">微信公众账号</h3>
+    <ul class="entry">
+      <img src="/img/default/qrcode.jpg" alt="欢迎关注个人公众账号" style= "width: 100%">
+    </ul>
+</div>
+
+  
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/JVM/">JVM</a><small>1</small></li>
+  
+    <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
+  
+    <li><a href="/tags/ab压测工具/">ab压测工具</a><small>1</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>3</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>2</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/集合框架/">集合框架</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+
+  
+  <div class="widget tag">
+    <h3 class="title">归档</h3>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">公元 2018 年</a><span class="archive-list-count">10</span></li></ul>
+  </div>
+
+</aside>
+      <div class="clearfix"></div>
+    </div>
+  
+  <footer id="footer"><div class="footer-content inner">
+  <div class="alignleft">
+  
+    &copy; 2018 tomgs
+    
+  </div>
+  <!-- <div class="alignright">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme
+    <a href="https://github.com/pengloo53/Hexo-theme-light_cn">light_cn</a>, 
+    <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  </div> -->
+  
+  <div class="visit">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </div>
+  
+  <div class="clearfix"></div>
+</div>
+</footer>
+  <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<!-- calendar widget -->
+
+
+<!-- 『不蒜子』计数服务 -->
+<script async src="http://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?c4ec2c7a97d8bada21b93c3a78422b39";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<!-- wumii关联推荐 -->
+<script type="text/javascript" src="http://widget.wumii.cn/ext/relatedItemsWidget"></script>
+
+<!-- 百度推荐 -->
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?"c4ec2c7a97d8bada21b93c3a78422b39;
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<!-- 返回顶部 -->
+<div id="toTop">
+	<a href="#">▲</a>
+	<a href="#footer">▼</a>
+</div>
+
+<!-- 站内搜索-Swiftype -->
+<!-- <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','sC-iNFrvTTNtiXEVNwo1','2.0.0');
+</script> -->
+
+<!-- fancybox -->
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+</body>
+</html>
+<!-- 
+<a href="https://github.com/tincopper" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub"></a>
+-->

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>第 3 页 | Tomgs&#39;s blog</title>
+  <title>第 4 页 | 归档：2018 | Tomgs&#39;s blog</title>
   <meta name="author" content="tomgs">
   
   <meta name="description" content="Java学习">
@@ -74,142 +74,33 @@
   
     <div id="content" class="inner">
       <div id="main-col" class="alignleft"><div id="wrapper">
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-        <div class="icon"></div>
-        
-        <time datetime="2018-03-14T14:42:23.000Z"><a href="/2018/03/14/3、hexo常见问题解决/">2018-03-14</a></time>
-        
-  
-    <h1 class="title"><a href="/2018/03/14/3、hexo常见问题解决/">hexo常见问题解决</a></h1>
-  
 
-    </header>
-
-    <div class="entry">
-      
-        <h1 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h1><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="1-page下怎么放置多篇文章？"><a href="#1-page下怎么放置多篇文章？" class="headerlink" title="1. page下怎么放置多篇文章？"></a>1. page下怎么放置多篇文章？</h3><blockquote>
-<p>手动进行文档分类，就是将md文件放到_post文件夹下不同的categories文件夹下，hexo g的时候，还是能够生成的。但是如果使用hexo new命令来创建的话，还是没有找到自动放到对应categories文件夹的方法<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2018/03/14/3、hexo常见问题解决/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-        <div class="alignright">
-          <a href="/2018/03/14/3、hexo常见问题解决/#comment" class="comment-link">Comments</a>
+<h2 class="archive-title fa-calendar">2018</h2>
+<div class="archive">
+   
+    <article class="photo">
+      <div class="post-content">
+        <header>
+          <div class="icon"></div>
+          <time datetime="2018-01-07T14:06:39.000Z"><a href="/2018/01/07/photo/My-Gallery/">2018-01-07</a></time>
+          
+            <h1 class="title"><a href="/2018/01/07/photo/My-Gallery/">My Gallery</a></h1>
+          
+        </header>
+        <div class='archive-tags'>
+          
         </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-        <div class="icon"></div>
-        
-        <time datetime="2018-01-31T16:42:04.000Z"><a href="/2018/02/01/MySQL架构学习回顾/">2018-02-01</a></time>
-        
-  
-    <h1 class="title"><a href="/2018/02/01/MySQL架构学习回顾/">MySQL架构学习回顾</a></h1>
-  
-
-    </header>
-
-    <div class="entry">
-      
-        <h1 id="逻辑架构"><a href="#逻辑架构" class="headerlink" title="逻辑架构"></a>逻辑架构</h1><p>了解MySQL的架构有助于深入理解MySQL服务器，下图是MySQL的三层逻辑架构图（图片来自于网络）。<br><img src="http://p1.pstatp.com/large/5e6f000615c7616a86c1" alt="image"></p>
-<p>第一层用于对客户端的连接处理、安全认证、授权等。每个客户端连接都会在服务端拥有一个线程，每个连接发起的查询都会在对应的单独线程中执行。</p>
-<p>第二层包含了MySQL的核心服务功能，包括查询解析、分析、查询缓存、内置函数、存储过程、触发器、视图等。当客户端发起请求时，如果是SELECT操作，MySQL会先检查是否命中查询缓存，命中则直接返回查询缓存中的数据；否则，MySQL会解析查询并创建对应的内部数据结构(解析树)，执行各种优化，然后执行。</p>
-<p>第三层包含了存储引擎，存储引擎负责数据的存储和提取。MySQL中有很多种不同类型的存储引擎，每个存储引擎各不相同，MySQL服务器通过API与存储引擎通信，屏蔽了各种存储引擎之间的差异。<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2018/02/01/MySQL架构学习回顾/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-        <div class="alignright">
-          <a href="/2018/02/01/MySQL架构学习回顾/#comment" class="comment-link">Comments</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-        <div class="icon"></div>
-        
-        <time datetime="2018-01-07T15:40:27.000Z"><a href="/2018/01/07/java-collections/">2018-01-07</a></time>
-        
-  
-    <h1 class="title"><a href="/2018/01/07/java-collections/">java collections</a></h1>
-  
-
-    </header>
-
-    <div class="entry">
-      
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java-collections"><span class="toc-text">java collections</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#List"><span class="toc-text">List</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set"><span class="toc-text">Set</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Map"><span class="toc-text">Map</span></a></li></ol></li></ol>
-    </div>
-
-        <h1 id="java-collections"><a href="#java-collections" class="headerlink" title="java collections"></a>java collections</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCollection</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">	list.add(<span class="string">"a"</span>);</span><br><span class="line">	list.add(<span class="string">"b"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2>
-      
-    </div>
-    <footer>
-      
-        
-        
-        <div class="alignright">
-          <a href="/2018/01/07/java-collections/#comment" class="comment-link">Comments</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
- 
+      </div>
+    </article>
+    
+</div>
 <nav id="pagination">
   
-    <a href="/page/2/" class="alignleft prev">上一页</a>
+    <a href="/archives/2018/page/3/" class="alignleft prev">上一页</a>
   
-  
-    <a href="/page/4/" class="alignright next">下一页</a>
   
   <div class="clearfix"></div>
-</nav>
-</div></div>
+</nav></div></div>
       <aside id="sidebar" class="alignright">
   
 <div class="widget tag">

@@ -97,7 +97,7 @@
         <h1 id="逻辑架构"><a href="#逻辑架构" class="headerlink" title="逻辑架构"></a>逻辑架构</h1><p>了解MySQL的架构有助于深入理解MySQL服务器，下图是MySQL的三层逻辑架构图（图片来自于网络）。<br><img src="http://p1.pstatp.com/large/5e6f000615c7616a86c1" alt="image"></p>
 <p>第一层用于对客户端的连接处理、安全认证、授权等。每个客户端连接都会在服务端拥有一个线程，每个连接发起的查询都会在对应的单独线程中执行。</p>
 <p>第二层包含了MySQL的核心服务功能，包括查询解析、分析、查询缓存、内置函数、存储过程、触发器、视图等。当客户端发起请求时，如果是SELECT操作，MySQL会先检查是否命中查询缓存，命中则直接返回查询缓存中的数据；否则，MySQL会解析查询并创建对应的内部数据结构(解析树)，执行各种优化，然后执行。</p>
-<p>第三层包含了存储引擎，存储引擎负责数据的存储和提取。MySQL中有很多种不同类型的存储引擎，每个存储引擎各不相同，MySQL服务器通过API与存储引擎通信，屏蔽了各种存储引擎之间的差异。</p>
+<p>第三层包含了存储引擎，存储引擎负责数据的存储和提取。MySQL中有很多种不同类型的存储引擎，每个存储引擎各不相同，MySQL服务器通过API与存储引擎通信，屏蔽了各种存储引擎之间的差异。<br><a id="more"></a></p>
 <h1 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h1><p>MySQL在处理并发读和写的时候，分别使用共享锁(读锁)和排它锁(写锁)。</p>
 <p>对共享资源高并发操作，在加锁的时候，最好能只锁定所需要的数据，控制锁的粒度、提高并发能力。MySQL提供了两种最重要的锁策略，表级锁和行级锁。</p>
 <p>表级锁，即锁定整张表。在对表进行插入、更新、删除操作时，需要先获得写锁，锁定整张表，其它读写操作将会被阻塞。读锁之间是不会阻塞的。需要注意的是alter table操作会使用表级锁，所以对数据量很大的表进行alter table操作时，需要谨慎。</p>
@@ -188,7 +188,7 @@
   
 <div class="widget tag">
   <h3 class="title" id="categories">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/JVM/">JVM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/集合框架/">集合框架</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/压测/">压测</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程/">编程</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程/hexo教程/">hexo教程</a><span class="category-list-count">1</span></li></ul></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/JVM/">JVM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/集合框架/">集合框架</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/压测/">压测</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程/">编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程/hexo教程/">hexo教程</a><span class="category-list-count">3</span></li></ul></li></ul> 
 </div>
  
 
@@ -214,7 +214,7 @@
   
     <li><a href="/tags/ab压测工具/">ab压测工具</a><small>1</small></li>
   
-    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+    <li><a href="/tags/hexo/">hexo</a><small>3</small></li>
   
     <li><a href="/tags/java/">java</a><small>2</small></li>
   
@@ -230,7 +230,7 @@
   
   <div class="widget tag">
     <h3 class="title">归档</h3>
-	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">公元 2018 年</a><span class="archive-list-count">8</span></li></ul>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">公元 2018 年</a><span class="archive-list-count">10</span></li></ul>
   </div>
 
 </aside>
