@@ -205,6 +205,49 @@
     <header>
         <div class="icon"></div>
         
+        <time datetime="2018-03-19T16:39:23.000Z"><a href="/2018/03/20/mywork/sftp JSCH连接sftp出现如下报错解决办法/">2018-03-20</a></time>
+        
+  
+    <h1 class="title"><a href="/2018/03/20/mywork/sftp JSCH连接sftp出现如下报错解决办法/">支付中心对账模块调度改造elastic-job分布式调度</a></h1>
+  
+
+    </header>
+
+    <div class="entry">
+      
+        
+    <div id="toc">
+        
+    </div>
+
+        <p><strong>问题描述:</strong> sftp JSCH连接sftp出现如下报错解决办法：<br>com.jcraft.jsch.JSchException:<br>Session.connect: java.security.InvalidAlgorithmParameterException: Prime size must be multiple of 64, and can only range from 512 to 1024 (inclusive)<br>    at com.jcraft.jsch.Session.connect(Session.java:565)<br>    at com.jcraft.jsch.Session.connect(Session.java:183)<br>    …</p>
+<p><strong>解决方法：</strong><br>1、换用jdk版本为1.8<br>2、更换jsch的版本，jsch-0.1.54.jar替换为jsch-0.1.52.jar或jsch-0.1.51.jar<br>3、如果上面两种方式解决不了，就按照google说的在服务器上添加ssh 弱算法。PS：这个没有试过</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+        <div class="alignright">
+          <a href="/2018/03/20/mywork/sftp JSCH连接sftp出现如下报错解决办法/#comment" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+        <div class="icon"></div>
+        
         <time datetime="2018-03-19T16:39:23.000Z"><a href="/2018/03/20/mywork/关于libjnotify.so的版本在linux上不兼容的问题解决/">2018-03-20</a></time>
         
   
@@ -252,52 +295,6 @@ net_contentobjects_jnotify_linux_JNotify_linux.c -o libjnotify.o</code><br>会�
         
         <div class="alignright">
           <a href="/2018/03/20/mywork/关于libjnotify.so的版本在linux上不兼容的问题解决/#comment" class="comment-link">Comments</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-        <div class="icon"></div>
-        
-        <time datetime="2018-03-19T16:39:23.000Z"><a href="/2018/03/20/mywork/weblogic10.3.6 启动项目报 weblogic.descriptor.DescriptorException VALIDATION PROBLEMS WERE FOUND/">2018-03-20</a></time>
-        
-  
-    <h1 class="title"><a href="/2018/03/20/mywork/weblogic10.3.6 启动项目报 weblogic.descriptor.DescriptorException VALIDATION PROBLEMS WERE FOUND/">支付中心对账模块调度改造elastic-job分布式调度</a></h1>
-  
-
-    </header>
-
-    <div class="entry">
-      
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#weblogic10-3-6-启动项目报-weblogic-descriptor-DescriptorException-VALIDATION-PROBLEMS-WERE-FOUND"><span class="toc-text">weblogic10.3.6 启动项目报 weblogic.descriptor.DescriptorException: VALIDATION PROBLEMS WERE FOUND</span></a></li></ol>
-    </div>
-
-        <h3 id="weblogic10-3-6-启动项目报-weblogic-descriptor-DescriptorException-VALIDATION-PROBLEMS-WERE-FOUND"><a href="#weblogic10-3-6-启动项目报-weblogic-descriptor-DescriptorException-VALIDATION-PROBLEMS-WERE-FOUND" class="headerlink" title="weblogic10.3.6 启动项目报 weblogic.descriptor.DescriptorException: VALIDATION PROBLEMS WERE FOUND"></a>weblogic10.3.6 启动项目报 weblogic.descriptor.DescriptorException: VALIDATION PROBLEMS WERE FOUND</h3><p>`<nov 2017="" 9,="" 2:47:56="" pm="" cst=""> <error> <j2ee> <bea-160197> </bea-160197></j2ee></error></nov></p>
-<p><unable to="" load="" descriptor="" payment="" applications="" payment-api="" web-inf="" web.xml="" of="" module="" payment-api.="" the="" error="" is="" weblogic.descriptor.descriptorexception:="" validation="" problems="" were="" found="" problem:="" cvc-enumeration-valid:="" string="" value="" '3.0'="" not="" a="" valid="" enumeration="" for="" web-app-versiontype="" in="" namespace="" http:="" java.sun.com="" xml="" ns="" javaee:<null=""><br>    at weblogic.descriptor.internal.MarshallerFactory$1.evaluateResults(MarshallerFactory.java:245)<br>    at weblogic.descriptor.internal.MarshallerFactory$1.evaluateResults(MarshallerFactory.java:231)<br>    at weblogic.descriptor.internal.MarshallerFactory$1.createDescriptor(MarshallerFactory.java:155)<br>    at weblogic.descriptor.BasicDescriptorManager.createDescriptor(BasicDescriptorManager.java:323)<br>    at weblogic.application.descriptor.AbstractDescriptorLoader2.getDescriptorBeanFromReader(AbstractDescriptorLoader2.java:788)<br>    ……`<br>原因：<br>项目中用到的是javaEE6.0，生成的web.xml中默认是web-app_3_0.xsd的定义，而 weblogic10.3.6并不支持web-app_3_0.xsd的定义，需要weblogic 12c版本才支持</unable></p>
-<p>解决办法:<br>将web.xml中web-app版本改为2.5即可。<br>如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;web-app xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">	xmlns=&quot;http://java.sun.com/xml/ns/javaee&quot;</span><br><span class="line">	xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/javaee </span><br><span class="line">	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;</span><br><span class="line">	version=&quot;2.5&quot;&gt;</span><br></pre></td></tr></table></figure>
-<p>参考文献：<br><a href="http://blog.csdn.net/wangmuming/article/details/22187307" target="_blank" rel="noopener">http://blog.csdn.net/wangmuming/article/details/22187307</a><br><a href="https://stackoverflow.com/questions/3166283/weblogic-11g-and-javaee-6" target="_blank" rel="noopener">https://stackoverflow.com/questions/3166283/weblogic-11g-and-javaee-6</a><br><a href="http://fm928.blog.163.com/blog/static/7481352015460339174/" target="_blank" rel="noopener">http://fm928.blog.163.com/blog/static/7481352015460339174/</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-        <div class="alignright">
-          <a href="/2018/03/20/mywork/weblogic10.3.6 启动项目报 weblogic.descriptor.DescriptorException VALIDATION PROBLEMS WERE FOUND/#comment" class="comment-link">Comments</a>
         </div>
         
       
