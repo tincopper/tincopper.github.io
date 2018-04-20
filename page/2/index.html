@@ -123,53 +123,30 @@
     <header>
         <div class="icon"></div>
         
-        <time datetime="2018-03-19T16:39:23.000Z"><a href="/2018/03/20/mywork/关于libjnotify.so的版本在linux上不兼容的问题解决/">2018-03-20</a></time>
+        <time datetime="2018-03-19T16:39:23.000Z"><a href="/2018/03/20/mywork/MyEclipse 查看 [Deployment Assembly] 出现 [the currently displayed page contains invalid values]/">2018-03-20</a></time>
         
   
-    <h1 class="title"><a href="/2018/03/20/mywork/关于libjnotify.so的版本在linux上不兼容的问题解决/">关于libjnotify.so的版本在linux上不兼容的问题解决</a></h1>
+    <h1 class="title"><a href="/2018/03/20/mywork/MyEclipse 查看 [Deployment Assembly] 出现 [the currently displayed page contains invalid values]/">MyEclipse 查看 [Deployment Assembly] 出现 [the currently displayed page contains invalid values]</a></h1>
   
 
     </header>
 
     <div class="entry">
       
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、问题描述"><span class="toc-text">一、问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、解决办法"><span class="toc-text">二、解决办法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方法二：升级GLIBC"><span class="toc-text">方法二：升级GLIBC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、参考链接："><span class="toc-text">三、参考链接：</span></a></li></ol>
-    </div>
-
-        <h2 id="一、问题描述"><a href="#一、问题描述" class="headerlink" title="一、问题描述"></a>一、问题描述</h2><p>SEVERE: Servlet [InitServlet] in web application [] threw load() exception<br>java.lang.UnsatisfiedLinkError:/payment/tomcats/tomcat-payment-gateway/lib/libjnotify.so:/lib64/libc.so.6:version`GLIBC_2.12’not found (required by /payment/tomcats/tomcat-payment-gateway/lib/libjnotify.so)</p>
-<p>&lt;!–more&gt;</p>
-<h2 id="二、解决办法"><a href="#二、解决办法" class="headerlink" title="二、解决办法"></a>二、解决办法</h2><p>###方法一：重新编译jnotify生成libjnotify.so<br>1、使用[strings /lib64/libc.so.6 | grep GLIBC] 查看支持系统中的GLIBC版本<br><code>payment@test1:~/tomcats/tomcat-payment-gateway/logs&gt; 
-strings /lib64/libc.so.6 | grep GLIBC</code><br>GLIBC_2.2.5<br>GLIBC_2.2.6<br>GLIBC_2.3<br>GLIBC_2.3.2<br>GLIBC_2.3.3<br>GLIBC_2.3.4<br>GLIBC_2.4<br>GLIBC_2.5<br>GLIBC_2.6<br>GLIBC_2.7<br>GLIBC_2.8<br>GLIBC_2.9<br>GLIBC_2.10<br>GLIBC_2.11<br>GLIBC_PRIVATE</p>
-<p>发现系统的glibc比较老旧，最新的为GLIBC_2.11。</p>
-<p>2、为了安全和稳定起见，自己编译jnotify的代码生成libjnotify.so</p>
-<p>3、执行 <code>gcc -I /usr/java/jdk1.7.0_80/include/ -I  
-/usr/java/jdk1.7.0_80/include/linux/ -fPIC -g -c 
-net_contentobjects_jnotify_linux_JNotify_linux.c -o libjnotify.o</code><br>会看到多个libjnotify.o</p>
-<p>4、执行 <code>gcc -g -shared -W1 -o libjnotify.so libjnotify.o -lc</code><br>就会看到 libjnotify.so</p>
-<p>5、然后把 libjnotify.so复制到java.library.path下面去就行了</p>
-<h3 id="方法二：升级GLIBC"><a href="#方法二：升级GLIBC" class="headerlink" title="方法二：升级GLIBC"></a>方法二：升级GLIBC</h3><p>1、glibc下载地址：<a href="http://ftp.gnu.org/gnu/glibc/" target="_blank" rel="noopener">http://ftp.gnu.org/gnu/glibc/</a><br>2、解压<br>   <code>$ mv glibc-ports-2.15 glibc-2.15/ports</code><br>   <code>$ mkdir glibc-build-2.15 &amp;&amp;cd glibc-build-2.15</code><br>   <code>$ ./glibc-2.15/configure
-    --prefix=/usr/local/glibc_mips CC=mipsel-linux-gcc 
-    --host=mipsel-linux 
-    --build=i686-pc-linux-gnu 
-    --enable-add-on=nptl 
-    libc_cv_forced_unwind=yes 
-    libc_cv_c_cleanup=yes 
-    libc_cv_mips_tls=yes 
-    libc_cv_gnu99_inline=yes</code> </p>
-<p>3、第2步没问题执行<br><code>$ make &amp;&amp;make install</code><br>4、查看是否升级完成<br><code>$ ls -l /lib/libc.so.6</code><br>输出：lrwxrwxrwx 1 root root 14 Jun 16 11:24 /lib/libc.so.6 -&gt; libc-2.12.3.so<br>说明升级完成。</p>
-<h2 id="三、参考链接："><a href="#三、参考链接：" class="headerlink" title="三、参考链接："></a>三、参考链接：</h2><p><a href="http://blog.csdn.net/akon_vm/article/details/9329089" target="_blank" rel="noopener">http://blog.csdn.net/akon_vm/article/details/9329089</a><br><a href="http://blog.csdn.net/ldl22847/article/details/18702645" target="_blank" rel="noopener">http://blog.csdn.net/ldl22847/article/details/18702645</a></p>
-<p><strong>PS：</strong><br>1、64位linux系统可以运行32位和64位程序，32位系统只能运行32位程序<br>2、<code>file topas</code>可以检查这个文件是32位还是64位<br>3、<code>ldd topas</code>可以检查这个文件需要哪些依赖库文件，可能依赖的库文件libG4processes.so是32位不满足需求</p>
-
+        <p>MyEclipse 查看 [Deployment Assembly] 出现 [the currently displayed page contains invalid values]</p>
+<h2 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h2><p>在myeclipse测试发布maven项目的时候发现，发布不上去，然后查看 [Deployment Assembly] 出现 [the currently displayed page contains invalid values] 异常问题。<br>
       
     </div>
     <footer>
       
         
+          <div class="alignleft">
+            <a href="/2018/03/20/mywork/MyEclipse 查看 [Deployment Assembly] 出现 [the currently displayed page contains invalid values]/#more" class="more-link">Read More</a>
+          </div>
+        
         
         <div class="alignright">
-          <a href="/2018/03/20/mywork/关于libjnotify.so的版本在linux上不兼容的问题解决/#comment" class="comment-link">Comments</a>
+          <a href="/2018/03/20/mywork/MyEclipse 查看 [Deployment Assembly] 出现 [the currently displayed page contains invalid values]/#comment" class="comment-link">Comments</a>
         </div>
         
       
@@ -187,35 +164,29 @@ net_contentobjects_jnotify_linux_JNotify_linux.c -o libjnotify.o</code><br>会�
     <header>
         <div class="icon"></div>
         
-        <time datetime="2018-03-19T16:39:23.000Z"><a href="/2018/03/20/mywork/weblogic10.3.6 启动项目报 weblogic.descriptor.DescriptorException VALIDATION PROBLEMS WERE FOUND/">2018-03-20</a></time>
+        <time datetime="2018-03-19T16:39:23.000Z"><a href="/2018/03/20/mywork/RestEasy统一异常处理问题，处理之后前端一直处于等待状态未返回异常结果/">2018-03-20</a></time>
         
   
-    <h1 class="title"><a href="/2018/03/20/mywork/weblogic10.3.6 启动项目报 weblogic.descriptor.DescriptorException VALIDATION PROBLEMS WERE FOUND/">weblogic10.3.6 启动项目报 weblogic.descriptor.DescriptorException VALIDATION PROBLEMS WERE FOUND</a></h1>
+    <h1 class="title"><a href="/2018/03/20/mywork/RestEasy统一异常处理问题，处理之后前端一直处于等待状态未返回异常结果/">RestEasy统一异常处理问题，处理之后前端一直处于等待状态未返回异常结果</a></h1>
   
 
     </header>
 
     <div class="entry">
       
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#weblogic10-3-6-启动项目报-weblogic-descriptor-DescriptorException-VALIDATION-PROBLEMS-WERE-FOUND"><span class="toc-text">weblogic10.3.6 启动项目报 weblogic.descriptor.DescriptorException: VALIDATION PROBLEMS WERE FOUND</span></a></li></ol>
-    </div>
-
-        <h3 id="weblogic10-3-6-启动项目报-weblogic-descriptor-DescriptorException-VALIDATION-PROBLEMS-WERE-FOUND"><a href="#weblogic10-3-6-启动项目报-weblogic-descriptor-DescriptorException-VALIDATION-PROBLEMS-WERE-FOUND" class="headerlink" title="weblogic10.3.6 启动项目报 weblogic.descriptor.DescriptorException: VALIDATION PROBLEMS WERE FOUND"></a>weblogic10.3.6 启动项目报 weblogic.descriptor.DescriptorException: VALIDATION PROBLEMS WERE FOUND</h3><p>`<nov 2017="" 9,="" 2:47:56="" pm="" cst=""> <error> <j2ee> <bea-160197> </bea-160197></j2ee></error></nov></p>
-<p><unable to="" load="" descriptor="" payment="" applications="" payment-api="" web-inf="" web.xml="" of="" module="" payment-api.="" the="" error="" is="" weblogic.descriptor.descriptorexception:="" validation="" problems="" were="" found="" problem:="" cvc-enumeration-valid:="" string="" value="" '3.0'="" not="" a="" valid="" enumeration="" for="" web-app-versiontype="" in="" namespace="" http:="" java.sun.com="" xml="" ns="" javaee:<null=""><br>    at weblogic.descriptor.internal.MarshallerFactory$1.evaluateResults(MarshallerFactory.java:245)<br>    at weblogic.descriptor.internal.MarshallerFactory$1.evaluateResults(MarshallerFactory.java:231)<br>    at weblogic.descriptor.internal.MarshallerFactory$1.createDescriptor(MarshallerFactory.java:155)<br>    at weblogic.descriptor.BasicDescriptorManager.createDescriptor(BasicDescriptorManager.java:323)<br>    at weblogic.application.descriptor.AbstractDescriptorLoader2.getDescriptorBeanFromReader(AbstractDescriptorLoader2.java:788)<br>    ……`<br>原因：<br>项目中用到的是javaEE6.0，生成的web.xml中默认是web-app_3_0.xsd的定义，而 weblogic10.3.6并不支持web-app_3_0.xsd的定义，需要weblogic 12c版本才支持</unable></p>
-<p>解决办法:<br>将web.xml中web-app版本改为2.5即可。<br>如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;web-app xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">	xmlns=&quot;http://java.sun.com/xml/ns/javaee&quot;</span><br><span class="line">	xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/javaee </span><br><span class="line">	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;</span><br><span class="line">	version=&quot;2.5&quot;&gt;</span><br></pre></td></tr></table></figure>
-<p>参考文献：<br><a href="http://blog.csdn.net/wangmuming/article/details/22187307" target="_blank" rel="noopener">http://blog.csdn.net/wangmuming/article/details/22187307</a><br><a href="https://stackoverflow.com/questions/3166283/weblogic-11g-and-javaee-6" target="_blank" rel="noopener">https://stackoverflow.com/questions/3166283/weblogic-11g-and-javaee-6</a><br><a href="http://fm928.blog.163.com/blog/static/7481352015460339174/" target="_blank" rel="noopener">http://fm928.blog.163.com/blog/static/7481352015460339174/</a></p>
-
+        <p>RestEasy统一异常处理问题，处理之后前端一直处于等待状态未返回异常结果<br>问题描述：<br>在RestEasy使用自定义统一异常处理之后，但是前端一直未能收到后台返回结果，但是后台已经执行完毕，跟踪了源码发现没有什么异常情况。<br>使用jstack分析了堆栈也没有发现死锁或者阻塞，而且排查代码也没有发现有死循环之类的问题，但是一直没有返回，当把自定义异常处理屏蔽掉之后使用框架自带的异常，发现能够返回异常信息<br>，这就非常奇怪。</p>
       
     </div>
     <footer>
       
         
+          <div class="alignleft">
+            <a href="/2018/03/20/mywork/RestEasy统一异常处理问题，处理之后前端一直处于等待状态未返回异常结果/#more" class="more-link">Read More</a>
+          </div>
+        
         
         <div class="alignright">
-          <a href="/2018/03/20/mywork/weblogic10.3.6 启动项目报 weblogic.descriptor.DescriptorException VALIDATION PROBLEMS WERE FOUND/#comment" class="comment-link">Comments</a>
+          <a href="/2018/03/20/mywork/RestEasy统一异常处理问题，处理之后前端一直处于等待状态未返回异常结果/#comment" class="comment-link">Comments</a>
         </div>
         
       
