@@ -1,0 +1,534 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JVM工具 | Tomgs&#39;s blog</title>
+  <meta name="author" content="tomgs">
+  
+  <meta name="description" content="Java学习">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="JVM工具"/>
+  <meta property="og:site_name" content="Tomgs&#39;s blog"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link rel="alternate" href="/atom.xml" title="Tomgs&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <!-- wumiiVerification -->
+  <meta name="wumiiVerification" content="fb50a101-84fe-4ca2-91a7-ae8cf792978b" />
+  <meta name="wumiiVerification" content="d73b5866-c390-4156-a4dd-51b526b5335e" />
+  <!-- favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!-- Font-Awesome -->
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+
+</head>
+
+<body>
+  <header id="header"><div class= "header-content inner">
+	<div class = "alignleft col-one">
+		
+			<div class='avatar'>
+				<img src = "/img/default/avatar.jpg">
+              </div>
+		
+		<div class="header-div">
+		    <h1><a href="/">Tomgs&#39;s blog</a></h1>
+		    <h2><a href="/">tomgsV5@gmail.com</a></h2>
+		</div>
+	</div>
+	<div class = "alignright col-two">
+		
+	</div>
+	<div class="clearfix"></div>
+</div>
+
+<div class= "header-nav">
+	<div class='header-nav-content inner'>
+		<div id="main-nav" class="alignleft">
+		    		
+		    		  <a href="/"><i class="fa fa-home"></i>首页</a>
+		    		
+		    		  <a href="/archives"><i class="fa fa-archive"></i>归档</a>
+		    		
+		    		  <a href="/categories/java"><i class="fa fa-book"></i>电子书</a>
+		    		
+		</div>
+		<div id="sub-nav" class="alignright">
+		    
+		      <a href="/about"><i class="fa fa-user"></i>关于我</a>
+		    
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</div>
+</header>
+  
+    <div id="content" class="inner">
+      <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+        <div class="icon"></div>
+        
+        <time datetime="2018-03-15T15:56:51.000Z"><a href="/2018/03/15/jvm/JVM工具/">2018-03-15</a></time>
+        
+  
+    <h1 class="title">JVM工具</h1>
+  
+
+    </header>
+
+    <div class="entry">
+      
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jps"><span class="toc-text">jps</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用法"><span class="toc-text">用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参数"><span class="toc-text">参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例："><span class="toc-text">示例：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jinfo"><span class="toc-text">jinfo</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用法："><span class="toc-text">用法：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参数："><span class="toc-text">参数：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选项："><span class="toc-text">选项：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例：-1"><span class="toc-text">示例：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jstack"><span class="toc-text">jstack</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用法-1"><span class="toc-text">用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选项"><span class="toc-text">选项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jstat"><span class="toc-text">jstat</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用法-2"><span class="toc-text">用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选项-1"><span class="toc-text">选项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#option"><span class="toc-text">option</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例-1"><span class="toc-text">示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gc"><span class="toc-text">-gc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gcutil"><span class="toc-text">-gcutil</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gcnew"><span class="toc-text">-gcnew</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jmap"><span class="toc-text">jmap</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用法-3"><span class="toc-text">用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选项说明"><span class="toc-text">选项说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例-2"><span class="toc-text">示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#heap"><span class="toc-text">heap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#histo-live"><span class="toc-text">histo[:live]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#permstat"><span class="toc-text">permstat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dump"><span class="toc-text">dump</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+        <h1 id="jps"><a href="#jps" class="headerlink" title="jps"></a>jps</h1><p>JPS 查看当前运行java进程<br>JVM Process Status Tool,显示指定系统内所有的HotSpot虚拟机进程。</p>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jps -lvm 用于查看当前机器上运行的java进程。 </span><br><span class="line"></span><br><span class="line">命令格式 jps [options] [hostid] </span><br><span class="line">注：如果不指定hostid就默认为当前主机或服务器。</span><br></pre></td></tr></table></figure>
+<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><blockquote>
+<p>常用命令行参数选项说明如下： <br><br>-q &nbsp;不输出类名、Jar名和传入main方法的参数 <br><br>-m 输出传入main方法的参数 <br><br>-l &nbsp;&nbsp;输出main类或Jar的全限名 <br><br>-v &nbsp;输出传入JVM的参数<br><br>-V 输出通过标记的文件传递给JVM的参数（.hotspotrc文件，或者是通过参数-XX:Flags=指定的文件）。<br><br>-J 用于传递jvm选项到由javac调用的java加载器中，例如，“-J-Xms48m”将把启动内存设置为48M，使用-J选项可以非常方便的向基于Java的开发的底层虚拟机应用程序传递参数。</p>
+</blockquote>
+<p>jps有问题, 使用 jps -J-Djps.debug=true -J-Djps.printStackTrace=true 可以获得Jps错误详细信息<br><a id="more"></a></p>
+<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><p>jps -lvm<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\tomgs&gt;jps -lvm</span><br><span class="line">6116 org.apache.catalina.startup.Bootstrap start -agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:63138 -Djava.net.preferIPv4Stack=true -Dcatalina.base=E:\apache-tomcat-7.0.65 -Dcatalina.home=E:\apache-tomcat-7.0.65 -Dwtp.deploy=E:\apache-tomcat-7.0.65\me-webapps -Djava.endorsed.dirs=E:\apache-tomcat-7.0.65\endorsed -Dfile.encoding=UTF-8</span><br><span class="line">6000 sun.tools.jps.Jps -lvm -Denv.class.path=.;D:\apps\Java\jdk1.7\bin;D:\apps\Java\jdk1.7\lib\dt.jar;D:\apps\Java\jdk1.7\lib\tools.jar -Dapplication.home=D:\apps\Java\jdk1.7 -Xms8m</span><br><span class="line">12892 C:\Users\tomgs\AppData\Local\Temp\pul9953.tmp\PULSEI~1.JAR -os win32 -ws win32 -arch x86_64 -showsplash -launcher D:\apps\MyEclipse 2015 CI\myeclipse.exe -name Myeclipse --launcher.library D:\apps\MyEclipse 2015 CI\plugins/org.eclipse.equinox.launcher.i18n.win32.win32.x86_64_3.2.0.v201103301700\eclipse_3215.dll -startup D:\apps\MyEclipse 2015 CI\plugins/org.eclipse.equinox.launcher_1.3.0.v20140415-2008.jar -exitdata 8ac_f4 -install D:\apps\MyEclipse 2015 CI -vm D:\apps\MyEclipse 2015 CI\binary/com.sun.java.jdk7.win32.x86_64_1.7.0.u45/bin/javaw.exe -vmargs -Xmx2048m -Xms512m -XX:PermSize=256m -XX:MaxPermSize=512m -XX:ReservedCodeCacheSize=128m -Dosgi.nls.warnings=ignore -Dfile.encoding=UTF-8 -jar C:\Users\tomgs\AppData\Local\Temp\pul9953.tmp\PULSEI~1.JAR -Xmx2048m -Xms512m -XX:PermSize=256m -XX:MaxPermSize=512m -XX:ReservedCodeCacheSize=128m -Dosgi.nls.warnings=ignore -Dfile.encoding=UTF-8</span><br></pre></td></tr></table></figure></p>
+<p>jps -l<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\tomgs&gt;jps -l</span><br><span class="line">6116 org.apache.catalina.startup.Bootstrap</span><br><span class="line">12124 sun.tools.jps.Jps</span><br><span class="line">12892 C:\Users\tomgs\AppData\Local\Temp\pul9953.tmp\PULSEI~1.JAR</span><br></pre></td></tr></table></figure></p>
+<p>jps -V<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\tomgs&gt;jps -V</span><br><span class="line">13108 Jps</span><br><span class="line">6116 Bootstrap</span><br><span class="line">12892 PULSEI~1.JAR</span><br></pre></td></tr></table></figure></p>
+<h1 id="jinfo"><a href="#jinfo" class="headerlink" title="jinfo"></a>jinfo</h1><p>该命令可以打印出java进程的配置信息：包括jvm参数，系统属性等</p>
+<h2 id="用法："><a href="#用法：" class="headerlink" title="用法："></a>用法：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jinfo [ option ] pid</span><br><span class="line">jinfo [ option ] executable core</span><br><span class="line">jinfo [ option ] [server-id@]remote-hostname-or-IP</span><br></pre></td></tr></table></figure>
+<h2 id="参数："><a href="#参数：" class="headerlink" title="参数："></a>参数：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pid   进程号</span><br><span class="line">executable   产生core dump的java executable</span><br><span class="line">core   core file</span><br><span class="line">remote-hostname-or-IP  主机名或ip</span><br><span class="line">server-id    远程主机上的debug server的唯一id</span><br></pre></td></tr></table></figure>
+<h2 id="选项："><a href="#选项：" class="headerlink" title="选项："></a>选项：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">no option  打印命令行参数和系统属性</span><br><span class="line">-flags  打印命令行参数</span><br><span class="line">-sysprops  打印系统属性</span><br><span class="line">-h  帮助</span><br></pre></td></tr></table></figure>
+<h2 id="示例：-1"><a href="#示例：-1" class="headerlink" title="示例："></a>示例：</h2><p>jinfo pid<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\tomgs&gt;jinfo 6116</span><br><span class="line">Attaching to process ID 6116, please wait...</span><br><span class="line">Debugger attached successfully.</span><br><span class="line">Server compiler detected.</span><br><span class="line">JVM version is 24.79-b02</span><br><span class="line">Java System Properties:</span><br><span class="line"></span><br><span class="line">java.vendor = Oracle Corporation</span><br><span class="line">sun.java.launcher = SUN_STANDARD</span><br><span class="line">catalina.base = E:\apache-tomcat-7.0.65</span><br><span class="line">sun.management.compiler = HotSpot 64-Bit Tiered Compilers</span><br><span class="line">catalina.useNaming = true</span><br><span class="line">os.name = Windows 8.1</span><br><span class="line"></span><br><span class="line">......</span><br><span class="line"></span><br><span class="line">wtp.deploy = E:\apache-tomcat-7.0.65\me-webapps</span><br><span class="line">PAYMENT_LOG_PATH = E:\apache-tomcat-7.0.65\me-webapps\z_test_payment-gateway\logs</span><br><span class="line">java.vm.name = Java HotSpot(TM) 64-Bit Server VM</span><br><span class="line">file.encoding = UTF-8</span><br><span class="line">java.specification.version = 1.7</span><br><span class="line"></span><br><span class="line">VM Flags: //JVM参数</span><br><span class="line"></span><br><span class="line">-agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:63138 -Djava.net.preferIPv4Stack=true -Dcatalina.base=E:\apache-tomcat-7.0.65 -Dcatalina.home=E:\apache-tomcat-7.0.65 -Dwtp.deploy=E:\apache-tomcat-7.0.65\me-webapps -Djava.endorsed.dirs=E:\apache-tomcat-7.0.65\endorsed -Dfile.encoding=UTF-8</span><br></pre></td></tr></table></figure></p>
+<p>jinfo -flags pid<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\tomgs&gt;jinfo -flags 6116</span><br><span class="line">Attaching to process ID 6116, please wait...</span><br><span class="line">Debugger attached successfully.</span><br><span class="line">Server compiler detected.</span><br><span class="line">JVM version is 24.79-b02</span><br><span class="line"></span><br><span class="line">-agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:63138 -Djava.net.preferIPv4Stack=true -Dcatalina.base=E:\apache-tomcat-7.0.65 -Dcatalina.home=E:\apache-tomcat-7.0.65 -Dwtp.deploy=E:\apache-tomcat-7.0.65\me-webapps -Djava.endorsed.dirs=E:\apache-tomcat-7.0.65\endorsed -Dfile.encoding=UTF-8</span><br></pre></td></tr></table></figure></p>
+<h1 id="jstack"><a href="#jstack" class="headerlink" title="jstack"></a>jstack</h1><p>打印线程信息</p>
+<h2 id="用法-1"><a href="#用法-1" class="headerlink" title="用法"></a>用法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack [ option ] pid</span><br></pre></td></tr></table></figure>
+<h2 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-l 打印锁信息</span><br><span class="line">-m 打印java和native的帧信息</span><br><span class="line">-F 强制dump，当jstack没有响应时使用</span><br></pre></td></tr></table></figure>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>将线程pid为120的线程dump到c盘的a.txt文件中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack 1200 &gt;&gt; C:\a.txt</span><br></pre></td></tr></table></figure></p>
+<p>分析另起文章说明。</p>
+<h1 id="jstat"><a href="#jstat" class="headerlink" title="jstat"></a>jstat</h1><p>jstat(JVM statistics Monitoring)是用于监视虚拟机运行时状态信息的命令，它可以显示出虚拟机进程中的类装载、内存、垃圾收集、JIT编译等运行数据。</p>
+<p>详细请见官方文档介绍：<a href="https://docs.oracle.com/javase/7/docs/technotes/tools/share/jstat.html" target="_blank" rel="noopener">https://docs.oracle.com/javase/7/docs/technotes/tools/share/jstat.html</a></p>
+<h2 id="用法-2"><a href="#用法-2" class="headerlink" title="用法"></a>用法</h2><pre><code>jstat -&lt;option&gt; [-t] [-h&lt;lines&gt;] &lt;vmid&gt; [&lt;interval&gt; [&lt;count&gt;]]
+</code></pre><h2 id="选项-1"><a href="#选项-1" class="headerlink" title="选项"></a>选项</h2><blockquote>
+<p>option - 选项，我们一般使用 -gcutil 查看gc情况</p>
+<p>vmid - VM的进程号，即当前运行的java进程号</p>
+<p>interval - 间隔时间，单位为秒或者毫秒</p>
+<p>count - 打印次数，如果缺省则打印无数次</p>
+</blockquote>
+<h3 id="option"><a href="#option" class="headerlink" title="option"></a>option</h3><table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Displays</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>class</td>
+<td>Statistics on the behavior of the class loader.</td>
+</tr>
+<tr>
+<td>compiler</td>
+<td>Statistics of the behavior of the HotSpot Just-in-Time compiler.</td>
+</tr>
+<tr>
+<td><strong><em>gc</em></strong></td>
+<td>Statistics of the behavior of the garbage collected heap.</td>
+</tr>
+<tr>
+<td><strong><em>gccapacity</em></strong></td>
+<td>Statistics of the capacities of the generations</td>
+<td>and their corresponding spaces.</td>
+</tr>
+<tr>
+<td>gccause</td>
+<td>Summary of garbage collection statistics (same as -gcutil), with the cause of the last and current</td>
+<td>(if applicable) garbage collection events.</td>
+</tr>
+<tr>
+<td><strong><em>gcnew</em></strong></td>
+<td>Statistics of the behavior of the new generation.</td>
+</tr>
+<tr>
+<td>gcnewcapacity</td>
+<td>Statistics of the sizes of the new generations</td>
+<td>and its corresponding spaces.</td>
+</tr>
+<tr>
+<td><strong><em>gcold</em></strong></td>
+<td>Statistics of the behavior of the old and permanent generations.</td>
+</tr>
+<tr>
+<td>gcoldcapacity</td>
+<td>Statistics of the sizes of the old generation.</td>
+</tr>
+<tr>
+<td>gcpermcapacity</td>
+<td>Statistics of the sizes of the permanent generation.</td>
+</tr>
+<tr>
+<td><strong><em>gcutil</em></strong></td>
+<td>Summary of garbage collection statistics.</td>
+</tr>
+<tr>
+<td>printcompilation</td>
+<td>HotSpot compilation method statistics.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h2><h3 id="gc"><a href="#gc" class="headerlink" title="-gc"></a>-gc</h3><pre><code>jstat -gc pid [interval] [count]
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\tomgs&gt;jstat -gc 12760</span><br><span class="line"> S0C    S1C    S0U    S1U      EC       EU        OC         OU       PC     PU    YGC     YGCT    FGC    FGCT     GCT  </span><br><span class="line">512.0  512.0   0.0   184.4   3072.0   1438.0    7168.0     605.4    21504.0 2572.2    121    0.163   0      0.000    0.163</span><br><span class="line"></span><br><span class="line">C:\Users\tomgs&gt;jstat -gc 12760 250 6</span><br><span class="line"> S0C    S1C    S0U    S1U      EC       EU        OC         OU       PC     PU    YGC     YGCT    FGC    FGCT     GCT  </span><br><span class="line">512.0  512.0  208.3   0.0    3072.0   1262.1    7168.0     605.4    21504.0 2572.5    166    0.229   0      0.000    0.229</span><br><span class="line">512.0  512.0   0.0   256.0   3072.0   2376.6    7168.0     605.4    21504.0 2572.5    167    0.231   0      0.000    0.231</span><br><span class="line">512.0  512.0   0.0   240.3   3072.0    0.0      7168.0     605.4    21504.0 2572.5    169    0.233   0      0.000    0.233</span><br><span class="line">512.0  512.0  192.0   0.0    3072.0   315.4     7168.0     605.4    21504.0 2572.5    170    0.234   0      0.000    0.234</span><br><span class="line">512.0  512.0   0.0   240.3   3072.0   1689.4    7168.0     605.4    21504.0 2572.7    171    0.236   0      0.000    0.236</span><br><span class="line">512.0  512.0   0.0   160.0   3072.0    0.0      7168.0     605.4    21504.0 2572.7    173    0.238   0      0.000    0.238</span><br></pre></td></tr></table></figure>
+<p>说明：</p>
+<blockquote>
+<p>C 即Capacity 总容量，U 即Used 已使用的容量 <br><br>S0C : survivor0区的总容量 <br><br>S1C : survivor1区的总容量 <br><br>S0U : survivor0区已使用的容量 <br><br>S1C : survivor1区已使用的容量 <br><br>EC : Eden区的总容量 <br><br>EU : Eden区已使用的容量 <br><br>OC : Old区的总容量 <br><br>OU : Old区已使用的容量 <br><br>MC ：方法区大小 <br><br>MU ：方法区使用大小 <br><br>CCSC : 压缩类空间大小 <br><br>CCSU : 压缩类空间使用大小 <br><br>YGC : 新生代垃圾回收次数 <br><br>YGCT : 新生代垃圾回收时间 <br><br>FGC : 老年代垃圾回收次数 <br><br>FGCT : 老年代垃圾回收时间 <br><br>GCT : 垃圾回收总消耗时间 <br></p>
+</blockquote>
+<h3 id="gcutil"><a href="#gcutil" class="headerlink" title="-gcutil"></a>-gcutil</h3><pre><code>jstat -gcutil pid [interval] [count]
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ jstat -gcutil 21891 250 7</span><br><span class="line">  </span><br><span class="line">  S0     S1     E      O      P     YGC    YGCT    FGC    FGCT     GCT</span><br><span class="line"></span><br><span class="line"> 12.44   0.00  27.20   9.49  96.70    78    0.176     5    0.495    0.672</span><br><span class="line"></span><br><span class="line"> 12.44   0.00  62.16   9.49  96.70    78    0.176     5    0.495    0.672</span><br><span class="line"></span><br><span class="line"> 12.44   0.00  83.97   9.49  96.70    78    0.176     5    0.495    0.672</span><br><span class="line"></span><br><span class="line">  0.00   7.74   0.00   9.51  96.70    79    0.177     5    0.495    0.673</span><br><span class="line"></span><br><span class="line">  0.00   7.74  23.37   9.51  96.70    79    0.177     5    0.495    0.673</span><br><span class="line"></span><br><span class="line">  0.00   7.74  43.82   9.51  96.70    79    0.177     5    0.495    0.673</span><br><span class="line"></span><br><span class="line">  0.00   7.74  58.11   9.51  96.71    79    0.177     5    0.495    0.673</span><br></pre></td></tr></table></figure>
+<p>The output of this example shows that a young generation collection occurred between the 3rd and 4th sample. The collection took 0.001 seconds and promoted objects from the eden space (E) to the old space (O), resulting in an increase of old space utilization from 9.49% to 9.51%. Before the collection, the survivor space was 12.44% utilized, but after this collection it is only 7.74% utilized.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S0</td>
+<td>Survivor space 0 utilization as a percentage of the space’s current capacity.</td>
+</tr>
+<tr>
+<td>S1</td>
+<td>Survivor space 1 utilization as a percentage of the space’s current capacity.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Eden space utilization as a percentage of the space’s current capacity.</td>
+</tr>
+<tr>
+<td>O</td>
+<td>Old space utilization as a percentage of the space’s current capacity.</td>
+</tr>
+<tr>
+<td>P</td>
+<td>Permanent space utilization as a percentage of the space’s current capacity.</td>
+</tr>
+<tr>
+<td>YGC</td>
+<td>Number of young generation GC events.</td>
+</tr>
+<tr>
+<td>YGCT</td>
+<td>Young generation garbage collection time.</td>
+</tr>
+</tbody>
+</table>
+<p>FGC    Number of full GC events.<br>FGCT    | Full garbage collection time.<br>GCT    | Total garbage collection time.</p>
+<h3 id="gcnew"><a href="#gcnew" class="headerlink" title="-gcnew"></a>-gcnew</h3><pre><code>jstat -gcnew [outputOptions] pid [interval]
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ jstat -gcnew -h3 21891 250</span><br><span class="line"></span><br><span class="line">S0C    S1C    S0U    S1U   TT MTT  DSS      EC       EU     YGC     YGCT</span><br><span class="line"></span><br><span class="line"> 64.0   64.0    0.0   31.7 31  31   32.0    512.0    178.6    249    0.203</span><br><span class="line"></span><br><span class="line"> 64.0   64.0    0.0   31.7 31  31   32.0    512.0    355.5    249    0.203</span><br><span class="line"></span><br><span class="line"> 64.0   64.0   35.4    0.0  2  31   32.0    512.0     21.9    250    0.204</span><br><span class="line"></span><br><span class="line">S0C    S1C    S0U    S1U   TT MTT  DSS      EC       EU     YGC     YGCT</span><br><span class="line"></span><br><span class="line"> 64.0   64.0   35.4    0.0  2  31   32.0    512.0    245.9    250    0.204</span><br><span class="line"></span><br><span class="line"> 64.0   64.0   35.4    0.0  2  31   32.0    512.0    421.1    250    0.204</span><br><span class="line"></span><br><span class="line"> 64.0   64.0    0.0   19.0 31  31   32.0    512.0     84.4    251    0.204</span><br><span class="line"></span><br><span class="line">S0C    S1C    S0U    S1U   TT MTT  DSS      EC       EU     YGC     YGCT</span><br><span class="line"></span><br><span class="line"> 64.0   64.0    0.0   19.0 31  31   32.0    512.0    306.7    251    0.204</span><br></pre></td></tr></table></figure>
+<p>In addition to showing the repeating header string, this example shows that between the 2nd and 3rd samples, a young GC occurred. Its duration was 0.001 seconds. The collection found enough live data that the survivor space 0 utilization (S0U) would would have exceeded the desired survivor Size (DSS). As a result, objects were promoted to the old generation (not visible in this output), and the tenuring threshold (TT) was lowered from 31 to 2.</p>
+<p>Another collection occurs between the 5th and 6th samples. This collection found very few survivors and returned the tenuring threshold to 31.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S0C</td>
+<td>Current survivor space 0 capacity (KB).</td>
+</tr>
+<tr>
+<td>S1C</td>
+<td>Current survivor space 1 capacity (KB).</td>
+</tr>
+<tr>
+<td>S0U</td>
+<td>Survivor space 0 utilization(利用，使用) (KB).</td>
+</tr>
+<tr>
+<td>S1U</td>
+<td>Survivor space 1 utilization (KB).</td>
+</tr>
+<tr>
+<td>TT</td>
+<td>Tenuring threshold(门槛).</td>
+</tr>
+<tr>
+<td>MTT</td>
+<td>Maximum tenuring threshold.</td>
+</tr>
+<tr>
+<td>DSS</td>
+<td>Desired(期望) survivor size (KB).</td>
+</tr>
+<tr>
+<td>EC</td>
+<td>Current eden space capacity (KB).</td>
+</tr>
+<tr>
+<td>EU</td>
+<td>Eden space utilization (KB).</td>
+</tr>
+<tr>
+<td>YGC</td>
+<td>Number of young generation GC events.</td>
+</tr>
+<tr>
+<td>YGCT</td>
+<td>Young generation garbage collection time.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>什么情况下新生代对象会晋升到老年代？</p>
+<ol>
+<li>当对象大小超过了PretenureSizeThreshold设置的对象大小阀值时，对象直接在老年代分配空间。</li>
+<li>当age从1开始的对象大小累计超过了Survivor区域的1/2(TargetSurvivorRatio所定义)时，会计算一个Thenuring Threshold，超过这个年龄的新生代对象会进入到老年代，即使这时候新生代还有很多的空间。注意MaxTenuringThreshold只是设置了最大的Thenuring Threshold，不是说只有大于Max Tenuring Threshold才会进入到老年代，而是只要超过了计算出来的Tenuring Threshold就会进入老年代，MaxTenuringThreshold规定了Tenuring Threshold的最大值而已。Tenuring Threshold这个值在每一轮GC后都会动态计算，它与TargetSurvivorRatio以及Survivor区的大小有关系，TargetSurivivor默认是50即Survivor的1/2, 会计算出一个Desired Survivor Size，当age从1开始的对象大小累计超过了这个Desired Survivor Size，那么这个age就是Tenuring Threshold的值。</li>
+</ol>
+</blockquote>
+<h1 id="jmap"><a href="#jmap" class="headerlink" title="jmap"></a>jmap</h1><p>JVM Memory Map命令用于生成heap dump文件，如果不使用这个命令，还可以使用-XX:+HeapDumpOnOutOfMemoryError参数来让虚拟机出现OOM的时候自动生成dump文件。 jmap不仅能生成dump文件，还可以查询finalize执行队列、Java堆和永久代的详细信息，如当前使用率、当前使用的是哪种收集器等。</p>
+<p>jmap命令官方文档：<a href="https://docs.oracle.com/javase/6/docs/technotes/tools/share/jmap.html" target="_blank" rel="noopener">https://docs.oracle.com/javase/6/docs/technotes/tools/share/jmap.html</a></p>
+<h2 id="用法-3"><a href="#用法-3" class="headerlink" title="用法"></a>用法</h2><pre><code>jmap [option] pid
+</code></pre><blockquote>
+<p>具体说明可以使用 <code>jmap -help</code> 查看</p>
+</blockquote>
+<h2 id="选项说明"><a href="#选项说明" class="headerlink" title="选项说明"></a>选项说明</h2><blockquote>
+<p><code>-dump:[live,]format=b,file=&lt;filename&gt;</code> : Dumps the Java heap in hprof binary format to filename. The live suboption is optional. If specified, only the live objects in the heap are dumped. To browse the heap dump, you can use jhat (Java Heap Analysis Tool) to read the generated file. <br></p>
+<p><code>-finalizerinfo</code> : 显示在F-Queue队列等待Finalizer线程执行finalizer方法的对象 <br></p>
+<p><code>-heap</code> : 显示Java堆详细信息 <br></p>
+<p><code>-histo[:live]</code> : 显示堆中对象的统计信息，如果指定了<code>live</code>子选项，则只计数活动对象。 <br></p>
+<p><code>-permstat</code> : to print permanent generation statistics <br></p>
+<p><code>-F</code> : 当-dump没有响应时，强制生成dump快照 <br></p>
+<p><code>-J&lt;flag&gt;</code> :<br>Passes <flag> to the Java virtual machine on which jmap is run</flag></p>
+</blockquote>
+<h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h2><h3 id="heap"><a href="#heap" class="headerlink" title="heap"></a>heap</h3><p>先用<code>jps</code>找出相关Java线程的pid，然后使用此命令。</p>
+<pre><code>$ jmap -heap pid
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\tomgs&gt;jmap -heap 13812</span><br><span class="line">Attaching to process ID 13812, please wait...</span><br><span class="line">Debugger attached successfully.</span><br><span class="line">Server compiler detected.</span><br><span class="line">JVM version is 24.79-b02</span><br><span class="line"></span><br><span class="line">using thread-local object allocation.</span><br><span class="line">Parallel GC with 8 thread(s) //GC 方式</span><br><span class="line"></span><br><span class="line">Heap Configuration: //堆内存初始化配置</span><br><span class="line">   MinHeapFreeRatio         = 0//对应jvm启动参数-XX:MinHeapFreeRatio设置JVM堆最小空闲比率(default 40)</span><br><span class="line">   MaxHeapFreeRatio         = 100//对应jvm启动参数 -XX:MaxHeapFreeRatio设置JVM堆最大空闲比率(default 70)</span><br><span class="line">   MaxHeapSize              = 1040187392 (992.0MB) //对应jvm启动参数-XX:MaxHeapSize=设置JVM堆的最大大小</span><br><span class="line">   NewSize                  = 21495808 (20.5MB)//对应jvm启动参数-XX:NewSize=设置JVM堆的‘新生代’的默认大小</span><br><span class="line">   MaxNewSize               = 346554368 (330.5MB)//对应jvm启动参数-XX:MaxNewSize=设置JVM堆的‘新生代’的最大大小</span><br><span class="line">   OldSize                  = 43515904 (41.5MB)//对应jvm启动参数-XX:OldSize=&lt;value&gt;:设置JVM堆的‘老生代’的大小</span><br><span class="line">   NewRatio                 = 2//对应jvm启动参数-XX:NewRatio=:‘新生代’和‘老生代’的大小比率</span><br><span class="line">   SurvivorRatio            = 8//对应jvm启动参数-XX:SurvivorRatio=设置年轻代中Eden区与Survivor区的大小比值 </span><br><span class="line"></span><br><span class="line">   PermSize         = 21757952 (20.75MB)</span><br><span class="line">   MaxPermSize      = 85983232 (82.0MB)</span><br><span class="line">   G1HeapRegionSize = 0 (0.0MB)</span><br><span class="line"></span><br><span class="line">Heap Usage: //堆内存使用情况</span><br><span class="line">PS Young Generation</span><br><span class="line">Eden Space:</span><br><span class="line">   capacity = 5242880 (5.0MB)</span><br><span class="line">   used     = 3618584 (3.4509506225585938MB)</span><br><span class="line">   free     = 1624296 (1.5490493774414062MB)</span><br><span class="line">   69.01901245117188% used</span><br><span class="line">From Space:</span><br><span class="line">   capacity = 524288 (0.5MB)</span><br><span class="line">   used     = 229376 (0.21875MB)</span><br><span class="line">   free     = 294912 (0.28125MB)</span><br><span class="line">   43.75% used</span><br><span class="line">To Space:</span><br><span class="line">   capacity = 524288 (0.5MB)</span><br><span class="line">   used     = 0 (0.0MB)</span><br><span class="line">   free     = 524288 (0.5MB)</span><br><span class="line">   0.0% used</span><br><span class="line">PS Old Generation</span><br><span class="line">   capacity = 7340032 (7.0MB)</span><br><span class="line">   used     = 688224 (0.656341552734375MB)</span><br><span class="line">   free     = 6651808 (6.343658447265625MB)</span><br><span class="line">   9.376307896205358% used</span><br><span class="line">PS Perm Generation</span><br><span class="line">   capacity = 22020096 (21.0MB)</span><br><span class="line">   used     = 2633520 (2.5115203857421875MB)</span><br><span class="line">   free     = 19386576 (18.488479614257812MB)</span><br><span class="line">   11.959620884486608% used</span><br><span class="line"></span><br><span class="line">1522 interned Strings occupying 140184 bytes.</span><br></pre></td></tr></table></figure>
+<h3 id="histo-live"><a href="#histo-live" class="headerlink" title="histo[:live]"></a>histo[:live]</h3><p>打印堆的对象统计，包括对象数、内存大小等等。jmap -histo:live 这个命令执行，JVM会先触发Full GC，然后再统计信息。带<code>live</code> 子选项的只会统计活对象。</p>
+<pre><code>$ jmap -histo[:live] pid
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\tomgs&gt; jmap -histo:live 13812 | more</span><br><span class="line"></span><br><span class="line"> num     #instances         #bytes  class name</span><br><span class="line">----------------------------------------------</span><br><span class="line">   1:          5833         752160  &lt;methodKlass&gt;</span><br><span class="line">   2:          5833         676232  &lt;constMethodKlass&gt;</span><br><span class="line">   3:           389         467400  &lt;constantPoolKlass&gt;</span><br><span class="line">   4:          1924         288568  [C</span><br><span class="line">   5:           352         280928  &lt;constantPoolCacheKlass&gt;</span><br><span class="line">   6:           389         266520  &lt;instanceKlassKlass&gt;</span><br><span class="line">   7:           545          91448  [B</span><br><span class="line">   8:           451          44296  java.lang.Class</span><br><span class="line">   9:          1775          42600  java.lang.String</span><br><span class="line">  10:           636          42400  [[I</span><br><span class="line">  11:           593          36448  [S</span><br><span class="line">  12:           785          31400  java.util.TreeMap$Entry</span><br><span class="line">  13:            45          24480  &lt;objArrayKlassKlass&gt;</span><br><span class="line">  14:            39          15752  &lt;methodDataKlass&gt;</span><br><span class="line">  15:           314          13352  [Ljava.lang.Object;</span><br><span class="line">  16:           187           7640  [Ljava.lang.String;</span><br><span class="line">  17:             8           4352  &lt;typeArrayKlassKlass&gt;</span><br><span class="line">  18:            93           3720  java.lang.ref.SoftReference</span><br><span class="line">  19:           114           3648  java.util.Hashtable$Entry</span><br><span class="line">  20:            37           2368  java.net.URL</span><br><span class="line">  21:            11           2288  &lt;klassKlass&gt;</span><br><span class="line">  22:            38           1824  sun.util.locale.LocaleObjectCache$CacheEntry</span><br><span class="line">  23:            55           1760  java.util.concurrent.ConcurrentHashMap$HashEntry</span><br><span class="line">  24:            44           1760  java.util.concurrent.ConcurrentHashMap$Segment</span><br><span class="line">  25:            38           1520  java.util.LinkedHashMap$Entry</span><br><span class="line">  26:            44           1408  java.util.concurrent.locks.ReentrantLock$NonfairSync</span><br><span class="line">  27:            44           1184  [Ljava.util.concurrent.ConcurrentHashMap$HashEntry;</span><br><span class="line">  28:            13           1168  [Ljava.util.HashMap$Entry;</span><br><span class="line">  29:             3           1112  [I</span><br><span class="line">  30:             1           1040  [[C</span><br><span class="line">  31:             6            992  [Ljava.util.Hashtable$Entry;</span><br><span class="line">  32:            36            864  java.io.ExpiringCache$Entry</span><br><span class="line">  33:            26            832  java.util.HashMap$Entry</span><br><span class="line">  34:            17            816  java.util.HashMap</span><br><span class="line">  35:            19            760  sun.util.locale.BaseLocale$Key</span><br><span class="line">  36:            19            760  java.io.ObjectStreamField</span><br><span class="line">  37:            10            720  java.lang.reflect.Constructor</span><br><span class="line">  38:             8            640  [Ljava.util.concurrent.ConcurrentHashMap$Segment;</span><br><span class="line">  39:             6            624  java.lang.Thread</span><br><span class="line">  40:            19            608  sun.util.locale.BaseLocale</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>jmap -histo:live 24971 | java.lang.String 查询类名包含java.lang.String的信息</p>
+<p>jmap -histo:live 24971 | grep java.lang.String &gt; histo.txt 保存信息到histo.txt文件</p>
+</blockquote>
+<h3 id="permstat"><a href="#permstat" class="headerlink" title="permstat"></a>permstat</h3><p>打印Java堆内存的永久区的类加载器的智能统计信息。对于每个类加载器而言，它的名称、活跃度、地址、父类加载器、它所加载的类的数量和大小都会被打印。此外，包含的字符串数量和大小也会被打印。</p>
+<p>使用方法：</p>
+<pre><code>$ jmap -permstat pid
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\tomgs&gt;jmap -permstat 13812</span><br><span class="line">Attaching to process ID 13812, please wait...</span><br><span class="line">Debugger attached successfully.</span><br><span class="line">Server compiler detected.</span><br><span class="line">JVM version is 24.79-b02</span><br><span class="line">finding class loader instances ..done.</span><br><span class="line">computing per loader stat ..done.</span><br><span class="line">please wait.. computing liveness........done.</span><br><span class="line">class_loader    classes bytes   parent_loader   alive?  type</span><br><span class="line"></span><br><span class="line">&lt;bootstrap&gt;     388     2581896   null          live    &lt;internal&gt;</span><br><span class="line">0x00000000fec39b28      8       102232  0x00000000fec3a1c8      live    sun/misc/Launcher$AppClassLoader@0x00000000f9c3b030</span><br><span class="line">0x00000000fec3a1c8      0       0         null          live    sun/misc/Launcher$ExtClassLoader@0x00000000f9be6128</span><br><span class="line"></span><br><span class="line">total = 3       396     2684128     N/A         alive=3, dead=0     N/A</span><br></pre></td></tr></table></figure>
+<h3 id="dump"><a href="#dump" class="headerlink" title="dump"></a>dump</h3><p>dump堆到文件,format指定输出格式，live指明是活着的对象,file指定文件名</p>
+<pre><code>$ jmap -dump[:live],format=b,file=[filename].hprof pid    
+</code></pre><p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\tomgs&gt;jmap -dump:live,format=b,file=D:/dump.hprof 13812</span><br><span class="line">Dumping heap to D:\dump.hprof ...</span><br><span class="line">Heap dump file created</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>使用jmap来dump内存时，系统会被暂停，它会先做一次Full GC再dump内存。</p>
+</blockquote>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/java/">java</a>, <a href="/categories/java/JVM/">JVM</a>
+  </div>
+
+        
+  <div class="tags">
+    <a href="/tags/java/">java</a>, <a href="/tags/JVM/">JVM</a>
+  </div>
+
+        <div class = "counter">
+  <span id="busuanzi_container_page_pv" style="display:none">
+      总访问&nbsp<span id="busuanzi_value_page_pv"></span>&nbsp次
+  </span>
+</div>
+        
+  <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+  <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+  
+<section id = "relate">
+	
+                <div id=""></div>
+	
+</section>
+
+
+  
+    <section id="comment">
+    <!--   <h1 class="title">留言</h1> -->
+    
+        <script type="text/javascript" id="wumiiComments">
+            var wumiiPermaLink = "https://tincopper.github.io/2018/03/15/jvm/JVM工具/"; //请用代码生成文章永久的链接
+            var wumiiTitle = "JVM工具"; //请用代码生成文章标题
+            var wumiiSitePrefix = ""; 
+            var wumiiCommentParams = "&pf=JAVASCRIPT";
+        </script>
+        <script type="text/javascript" src="http://widget.wumii.cn/ext/cw/widget"></script>
+      
+    </section>
+
+
+
+
+</div></div>
+      <aside id="sidebar" class="alignright">
+  
+<div class="widget tag">
+  <h3 class="title" id="categories">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/JVM/">JVM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/集合框架/">集合框架</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工作备忘/">工作备忘</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/压测/">压测</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程/">编程</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程/hexo教程/">hexo教程</a><span class="category-list-count">4</span></li></ul></li></ul> 
+</div>
+ 
+
+
+  <div class="widget tag">
+  <h3 class="title">微信公众账号</h3>
+    <ul class="entry">
+      <img src="/img/default/qrcode.jpg" alt="欢迎关注个人公众账号" style= "width: 100%">
+    </ul>
+</div>
+
+  
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/JVM/">JVM</a><small>1</small></li>
+  
+    <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
+  
+    <li><a href="/tags/ab压测工具/">ab压测工具</a><small>1</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>4</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>3</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/集合框架/">集合框架</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+
+  
+  <div class="widget tag">
+    <h3 class="title">归档</h3>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">公元 2018 年</a><span class="archive-list-count">18</span></li></ul>
+  </div>
+
+</aside>
+      <div class="clearfix"></div>
+    </div>
+  
+  <footer id="footer"><div class="footer-content inner">
+  <div class="alignleft">
+  
+    &copy; 2018 tomgs
+    
+  </div>
+  <!-- <div class="alignright">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme
+    <a href="https://github.com/pengloo53/Hexo-theme-light_cn">light_cn</a>, 
+    <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  </div> -->
+  
+  <div class="visit">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </div>
+  
+  <div class="clearfix"></div>
+</div>
+</footer>
+  <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<!-- calendar widget -->
+
+
+<!-- 『不蒜子』计数服务 -->
+<script async src="http://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?c4ec2c7a97d8bada21b93c3a78422b39";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<!-- wumii关联推荐 -->
+<script type="text/javascript" src="http://widget.wumii.cn/ext/relatedItemsWidget"></script>
+
+<!-- 百度推荐 -->
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?"c4ec2c7a97d8bada21b93c3a78422b39;
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<!-- 返回顶部 -->
+<div id="toTop">
+	<a href="#">▲</a>
+	<a href="#footer">▼</a>
+</div>
+
+<!-- 站内搜索-Swiftype -->
+<!-- <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','sC-iNFrvTTNtiXEVNwo1','2.0.0');
+</script> -->
+
+<!-- fancybox -->
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+</body>
+</html>
+<!-- 
+<a href="https://github.com/tincopper" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub"></a>
+-->
