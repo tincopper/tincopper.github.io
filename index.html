@@ -80,6 +80,48 @@
     <header>
         <div class="icon"></div>
         
+        <time datetime="2018-04-19T16:39:23.000Z"><a href="/2018/04/20/支付中心对账模块调度改造elastic-job分布式调度/">2018-04-20</a></time>
+        
+  
+    <h1 class="title"><a href="/2018/04/20/支付中心对账模块调度改造elastic-job分布式调度/">支付中心对账模块调度改造elastic-job分布式调度</a></h1>
+  
+
+    </header>
+
+    <div class="entry">
+      
+        <h1 id="elastic-job调度框架"><a href="#elastic-job调度框架" class="headerlink" title="elastic-job调度框架"></a>elastic-job调度框架</h1><h2 id="elastic-job简介"><a href="#elastic-job简介" class="headerlink" title="elastic-job简介"></a>elastic-job简介</h2><p>Elastic-Job是一个分布式调度解决方案，由两个相互独立的子项目Elastic-Job-Lite和Elastic-Job-Cloud组成。</p>
+<p>Elastic-Job-Lite定位为轻量级无中心化解决方案，使用jar包的形式提供分布式任务的协调服务，外部依赖仅Zookeeper。</p>
+<p>详细介绍可以去官网查询：<a href="http://elasticjob.io" target="_blank" rel="noopener">http://elasticjob.io</a><br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2018/04/20/支付中心对账模块调度改造elastic-job分布式调度/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+        <div class="alignright">
+          <a href="/2018/04/20/支付中心对账模块调度改造elastic-job分布式调度/#comment" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+        <div class="icon"></div>
+        
         <time datetime="2018-04-19T15:19:52.000Z"><a href="/2018/04/19/1、扩展spring-mvc，实现自定义参数转换/">2018-04-19</a></time>
         
   
@@ -90,8 +132,8 @@
 
     <div class="entry">
       
-        <h1 id="需要明白的问题"><a href="#需要明白的问题" class="headerlink" title="需要明白的问题"></a>需要明白的问题</h1><p><br><br><br></p>
-<h2 id="1-Spring-MVC处理-RequestBody和-ResponseBody的流程分析"><a href="#1-Spring-MVC处理-RequestBody和-ResponseBody的流程分析" class="headerlink" title="1. Spring MVC处理@RequestBody和@ResponseBody的流程分析"></a>1. Spring MVC处理@RequestBody和@ResponseBody的流程分析</h2><p>在SpringMVC 默认处理JSON格式数据是通过@RequestBody和@ResponseBody注解进行参数绑定，<strong><em><code>RequestResponseBodyMethodProcessor</code></em></strong> 这个类实现了对RequestBody和ResponseBody注解的处理。</p>
+        <p><br><br><br></p>
+<h1 id="需要明白的问题"><a href="#需要明白的问题" class="headerlink" title="需要明白的问题"></a>需要明白的问题</h1><h2 id="1-Spring-MVC处理-RequestBody和-ResponseBody的流程分析"><a href="#1-Spring-MVC处理-RequestBody和-ResponseBody的流程分析" class="headerlink" title="1. Spring MVC处理@RequestBody和@ResponseBody的流程分析"></a>1. Spring MVC处理@RequestBody和@ResponseBody的流程分析</h2><p>在SpringMVC 默认处理JSON格式数据是通过@RequestBody和@ResponseBody注解进行参数绑定，<strong><em><code>RequestResponseBodyMethodProcessor</code></em></strong> 这个类实现了对RequestBody和ResponseBody注解的处理。</p>
 <p>RequestResponseBodyMethodProcessor类的层级关系如下：<br><img src="http://img.blog.csdn.net/20180117221331530?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvVG9tZ3M=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="RequestResponseBodyMethodProcessor类结构"><br>
       
     </div>
@@ -156,51 +198,6 @@
 
 
 
-
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-        <div class="icon"></div>
-        
-        <time datetime="2018-03-15T15:56:51.000Z"><a href="/2018/03/15/JVM工具/">2018-03-15</a></time>
-        
-  
-    <h1 class="title"><a href="/2018/03/15/JVM工具/">JVM工具</a></h1>
-  
-
-    </header>
-
-    <div class="entry">
-      
-        <h1 id="jps"><a href="#jps" class="headerlink" title="jps"></a>jps</h1><p>JPS 查看当前运行java进程<br>JVM Process Status Tool,显示指定系统内所有的HotSpot虚拟机进程。</p>
-<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jps -lvm 用于查看当前机器上运行的java进程。 </span><br><span class="line"></span><br><span class="line">命令格式 jps [options] [hostid] </span><br><span class="line">注：如果不指定hostid就默认为当前主机或服务器。</span><br></pre></td></tr></table></figure>
-<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><blockquote>
-<p>常用命令行参数选项说明如下： <br><br>-q &nbsp;不输出类名、Jar名和传入main方法的参数 <br><br>-m 输出传入main方法的参数 <br><br>-l &nbsp;&nbsp;输出main类或Jar的全限名 <br><br>-v &nbsp;输出传入JVM的参数<br><br>-V 输出通过标记的文件传递给JVM的参数（.hotspotrc文件，或者是通过参数-XX:Flags=指定的文件）。<br><br>-J 用于传递jvm选项到由javac调用的java加载器中，例如，“-J-Xms48m”将把启动内存设置为48M，使用-J选项可以非常方便的向基于Java的开发的底层虚拟机应用程序传递参数。</p>
-</blockquote>
-<p>jps有问题, 使用 jps -J-Djps.debug=true -J-Djps.printStackTrace=true 可以获得Jps错误详细信息<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2018/03/15/JVM工具/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-        <div class="alignright">
-          <a href="/2018/03/15/JVM工具/#comment" class="comment-link">Comments</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
  
 <nav id="pagination">
   
@@ -214,7 +211,7 @@
   
 <div class="widget tag">
   <h3 class="title" id="categories">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/JVM/">JVM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/集合框架/">集合框架</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/压测/">压测</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程/">编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程/hexo教程/">hexo教程</a><span class="category-list-count">3</span></li></ul></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/JVM/">JVM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/集合框架/">集合框架</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工作备忘/">工作备忘</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/压测/">压测</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程/">编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程/hexo教程/">hexo教程</a><span class="category-list-count">3</span></li></ul></li></ul> 
 </div>
  
 
@@ -256,7 +253,7 @@
   
   <div class="widget tag">
     <h3 class="title">归档</h3>
-	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">公元 2018 年</a><span class="archive-list-count">10</span></li></ul>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">公元 2018 年</a><span class="archive-list-count">11</span></li></ul>
   </div>
 
 </aside>
