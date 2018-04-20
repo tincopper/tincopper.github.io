@@ -80,61 +80,10 @@
     <header>
         <div class="icon"></div>
         
-        <time datetime="2018-03-14T14:42:23.000Z"><a href="/2018/03/14/2、heox博客管理/">2018-03-14</a></time>
+        <time datetime="2018-03-14T14:42:23.000Z"><a href="/2018/03/14/hexo/3、hexo常见问题解决/">2018-03-14</a></time>
         
   
-    <h1 class="title"><a href="/2018/03/14/2、heox博客管理/">2、heox博客管理</a></h1>
-  
-
-    </header>
-
-    <div class="entry">
-      
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hexo-基本使用方法："><span class="toc-text">hexo 基本使用方法：</span></a></li></ol>
-    </div>
-
-        <h1 id="hexo-基本使用方法："><a href="#hexo-基本使用方法：" class="headerlink" title="hexo 基本使用方法："></a>hexo 基本使用方法：</h1><p>执行命令前，首先进入hexo init目录</p>
-<blockquote>
-<p>hexo new “postName” #新建文章</p>
-<p>hexo new page “pageName” #新建页面</p>
-<p>hexo generate #生成静态页面至public目录</p>
-<p>hexo server #开启本地预览访问端口（默认端口4000，’ctrl + c’关闭server，或者使用 -p 指定端口）</p>
-<p>hexo deploy #将.deploy目录部署到GitHub</p>
-<p>hexo help # 查看帮助</p>
-<p>hexo version #查看Hexo的版本</p>
-</blockquote>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-        <div class="alignright">
-          <a href="/2018/03/14/2、heox博客管理/#comment" class="comment-link">Comments</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-        <div class="icon"></div>
-        
-        <time datetime="2018-03-14T14:42:23.000Z"><a href="/2018/03/14/3、hexo常见问题解决/">2018-03-14</a></time>
-        
-  
-    <h1 class="title"><a href="/2018/03/14/3、hexo常见问题解决/">hexo常见问题解决</a></h1>
+    <h1 class="title"><a href="/2018/03/14/hexo/3、hexo常见问题解决/">hexo常见问题解决</a></h1>
   
 
     </header>
@@ -149,12 +98,12 @@
       
         
           <div class="alignleft">
-            <a href="/2018/03/14/3、hexo常见问题解决/#more" class="more-link">Read More</a>
+            <a href="/2018/03/14/hexo/3、hexo常见问题解决/#more" class="more-link">Read More</a>
           </div>
         
         
         <div class="alignright">
-          <a href="/2018/03/14/3、hexo常见问题解决/#comment" class="comment-link">Comments</a>
+          <a href="/2018/03/14/hexo/3、hexo常见问题解决/#comment" class="comment-link">Comments</a>
         </div>
         
       
@@ -172,32 +121,73 @@
     <header>
         <div class="icon"></div>
         
-        <time datetime="2018-01-31T16:42:04.000Z"><a href="/2018/02/01/MySQL架构学习回顾/">2018-02-01</a></time>
+        <time datetime="2018-03-14T14:42:23.000Z"><a href="/2018/03/14/hexo/1、hexo使用指南/">2018-03-14</a></time>
         
   
-    <h1 class="title"><a href="/2018/02/01/MySQL架构学习回顾/">MySQL架构学习回顾</a></h1>
+    <h1 class="title"><a href="/2018/03/14/hexo/1、hexo使用指南/">1、hexo使用指南</a></h1>
   
 
     </header>
 
     <div class="entry">
       
-        <h1 id="逻辑架构"><a href="#逻辑架构" class="headerlink" title="逻辑架构"></a>逻辑架构</h1><p>了解MySQL的架构有助于深入理解MySQL服务器，下图是MySQL的三层逻辑架构图（图片来自于网络）。<br><img src="http://p1.pstatp.com/large/5e6f000615c7616a86c1" alt="image"></p>
-<p>第一层用于对客户端的连接处理、安全认证、授权等。每个客户端连接都会在服务端拥有一个线程，每个连接发起的查询都会在对应的单独线程中执行。</p>
-<p>第二层包含了MySQL的核心服务功能，包括查询解析、分析、查询缓存、内置函数、存储过程、触发器、视图等。当客户端发起请求时，如果是SELECT操作，MySQL会先检查是否命中查询缓存，命中则直接返回查询缓存中的数据；否则，MySQL会解析查询并创建对应的内部数据结构(解析树)，执行各种优化，然后执行。</p>
-<p>第三层包含了存储引擎，存储引擎负责数据的存储和提取。MySQL中有很多种不同类型的存储引擎，每个存储引擎各不相同，MySQL服务器通过API与存储引擎通信，屏蔽了各种存储引擎之间的差异。<br>
+        <h1 id="hexo使用指南"><a href="#hexo使用指南" class="headerlink" title="hexo使用指南"></a>hexo使用指南</h1><h1 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h1><p>gitforwindos : <a href="https://gitforwindows.org/" target="_blank" rel="noopener">https://gitforwindows.org/</a></p>
+<p>git downloads : <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">https://git-scm.com/downloads</a><br>以上两个地址都可以下载安装，安装步骤参其他文档。</p>
+<h1 id="安装nodeJS"><a href="#安装nodeJS" class="headerlink" title="安装nodeJS"></a>安装nodeJS</h1><p>官方网址：<a href="http://nodejs.cn/download/" target="_blank" rel="noopener">http://nodejs.cn/download/</a><br>进入官方地址进行下载然后安装，安装步骤很简单，就不进行演示了。</p>
+<h1 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h1><p>在安装hexo之前假设你已经有了github账号了，以及安装了上述的git和nodejs环境。</p>
+<h2 id="创建安装目录"><a href="#创建安装目录" class="headerlink" title="创建安装目录"></a>创建安装目录</h2><p>首先需要创建一个安装目录用于安装hexo，然后我这里创建了一个<code>blog</code>目录。</p>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2018/02/01/MySQL架构学习回顾/#more" class="more-link">Read More</a>
+            <a href="/2018/03/14/hexo/1、hexo使用指南/#more" class="more-link">Read More</a>
           </div>
         
         
         <div class="alignright">
-          <a href="/2018/02/01/MySQL架构学习回顾/#comment" class="comment-link">Comments</a>
+          <a href="/2018/03/14/hexo/1、hexo使用指南/#comment" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+        <div class="icon"></div>
+        
+        <time datetime="2018-03-14T14:42:23.000Z"><a href="/2018/03/14/hexo/4、如何将本地的文章进行分类管理/">2018-03-14</a></time>
+        
+  
+    <h1 class="title"><a href="/2018/03/14/hexo/4、如何将本地的文章进行分类管理/">4、如何将本地的文章进行分类管理</a></h1>
+  
+
+    </header>
+
+    <div class="entry">
+      
+        <h1 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h1><p>刚开始在使用hexo写博客的时候发现，就是新建的文章都是在<code>_posts</code>目录中，现在写的东西少还好，到时如果多了的话，在本地就不好维护了，希望能够使用分类把本地的文章进行分类，就像下图中的<code>java</code>目录，我希望放Java相关的文章到这个目录。在线上展示的分类我们知道可以通过<code>categories</code>和<code>tags</code>进行分类展示。那么这个要怎么解决？<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2018/03/14/hexo/4、如何将本地的文章进行分类管理/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+        <div class="alignright">
+          <a href="/2018/03/14/hexo/4、如何将本地的文章进行分类管理/#comment" class="comment-link">Comments</a>
         </div>
         
       
@@ -223,7 +213,7 @@
   
 <div class="widget tag">
   <h3 class="title" id="categories">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/JVM/">JVM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/集合框架/">集合框架</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工作备忘/">工作备忘</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/压测/">压测</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程/">编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程/hexo教程/">hexo教程</a><span class="category-list-count">3</span></li></ul></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/JVM/">JVM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/集合框架/">集合框架</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工作备忘/">工作备忘</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/压测/">压测</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程/">编程</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程/hexo教程/">hexo教程</a><span class="category-list-count">4</span></li></ul></li></ul> 
 </div>
  
 
@@ -249,7 +239,7 @@
   
     <li><a href="/tags/ab压测工具/">ab压测工具</a><small>1</small></li>
   
-    <li><a href="/tags/hexo/">hexo</a><small>3</small></li>
+    <li><a href="/tags/hexo/">hexo</a><small>4</small></li>
   
     <li><a href="/tags/java/">java</a><small>3</small></li>
   
@@ -265,7 +255,7 @@
   
   <div class="widget tag">
     <h3 class="title">归档</h3>
-	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">公元 2018 年</a><span class="archive-list-count">12</span></li></ul>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">公元 2018 年</a><span class="archive-list-count">13</span></li></ul>
   </div>
 
 </aside>
