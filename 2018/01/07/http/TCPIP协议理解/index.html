@@ -1,0 +1,395 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>TCP/IP协议理解 | Tomgs&#39;s blog</title>
+  <meta name="author" content="tomgs">
+  
+  <meta name="description" content="Java学习">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="TCP/IP协议理解"/>
+  <meta property="og:site_name" content="Tomgs&#39;s blog"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link rel="alternate" href="/atom.xml" title="Tomgs&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <!-- wumiiVerification -->
+  <meta name="wumiiVerification" content="fb50a101-84fe-4ca2-91a7-ae8cf792978b" />
+  <meta name="wumiiVerification" content="d73b5866-c390-4156-a4dd-51b526b5335e" />
+  <!-- favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!-- Font-Awesome -->
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+
+</head>
+
+<body>
+  <header id="header"><div class= "header-content inner">
+	<div class = "alignleft col-one">
+		
+			<div class='avatar'>
+				<img src = "/img/default/avatar.jpg">
+              </div>
+		
+		<div class="header-div">
+		    <h1><a href="/">Tomgs&#39;s blog</a></h1>
+		    <h2><a href="/">tomgsV5@gmail.com</a></h2>
+		</div>
+	</div>
+	<div class = "alignright col-two">
+		
+	</div>
+	<div class="clearfix"></div>
+</div>
+
+<div class= "header-nav">
+	<div class='header-nav-content inner'>
+		<div id="main-nav" class="alignleft">
+		    		
+		    		  <a href="/"><i class="fa fa-home"></i>首页</a>
+		    		
+		    		  <a href="/archives"><i class="fa fa-archive"></i>归档</a>
+		    		
+		    		  <a href="/categories/java"><i class="fa fa-book"></i>电子书</a>
+		    		
+		</div>
+		<div id="sub-nav" class="alignright">
+		    
+		      <a href="/about"><i class="fa fa-user"></i>关于我</a>
+		    
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</div>
+</header>
+  
+    <div id="content" class="inner">
+      <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+        <div class="icon"></div>
+        
+        <time datetime="2018-01-07T15:40:27.000Z"><a href="/2018/01/07/http/TCPIP协议理解/">2018-01-07</a></time>
+        
+  
+    <h1 class="title">TCP/IP协议理解</h1>
+  
+
+    </header>
+
+    <div class="entry">
+      
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是TCP-IP模型？"><span class="toc-text">什么是TCP/IP模型？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TCP-IP模型的四层结构"><span class="toc-text">TCP/IP模型的四层结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TCP报文格式"><span class="toc-text">TCP报文格式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TCP3次握手"><span class="toc-text">TCP3次握手</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SYN攻击"><span class="toc-text">SYN攻击</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP序列号预测攻击-TCP-sequence-prediction-attack"><span class="toc-text">TCP序列号预测攻击(TCP_sequence_prediction_attack)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何体现TCP的”高效、安全、可靠”"><span class="toc-text">如何体现TCP的”高效、安全、可靠”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么不用两次握手或者四次握手等"><span class="toc-text">为什么不用两次握手或者四次握手等</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TCP4次挥手"><span class="toc-text">TCP4次挥手</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么客户端最后还要等待2MSL？"><span class="toc-text">为什么客户端最后还要等待2MSL？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如果已经建立了连接，但是客户端突然出现故障了怎么办？"><span class="toc-text">如果已经建立了连接，但是客户端突然出现故障了怎么办？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文档"><span class="toc-text">参考文档</span></a></li></ol>
+    </div>
+
+        <h1 id="什么是TCP-IP模型？"><a href="#什么是TCP-IP模型？" class="headerlink" title="什么是TCP/IP模型？"></a>什么是TCP/IP模型？</h1><p>TCP/IP模型是一系列网络协议的总称，这些协议的目的，就是使计算机之间可以进行信息交换。<br>所谓”协议”可以理解成机器之间交谈的语言，每一种协议都有自己的目的。TCP/IP模型一共包括几百种协议，对互联网上交换信息的各个方面都做了规定。</p>
+<p>TCP存在之于”互联网“的意义有三点： - 让数据进行”可靠“，”高效“，”安全“的传输<br><a id="more"></a></p>
+<h1 id="TCP-IP模型的四层结构"><a href="#TCP-IP模型的四层结构" class="headerlink" title="TCP/IP模型的四层结构"></a>TCP/IP模型的四层结构</h1><p>这些协议可以大致分成四个层次，上一层的协议都以下一层的协议为基础。就像下面这张图：<br><img src="https://images2015.cnblogs.com/blog/983980/201611/983980-20161121173924409-1128983178.png" alt="OSI七层模型"></p>
+<p><img src="http://img.blog.csdn.net/20160731161720376" alt="OSI七层模型"></p>
+<p>从下到上的四层，分别为连接层（Link Layer）、网络层（Internet Layer）、传输层（Transport Layer）、应用层（Application Layer）。<br>可以这样理解它们的作用：</p>
+<ol>
+<li>连接层负责建立电路连接，是整个网络的物理基础，典型的协议包括以太网、ADSL等等；</li>
+<li>网络层负责分配地址和传送二进制数据，主要协议是IP协议；</li>
+<li>传输层负责传送文本数据，主要协议是TCP协议；</li>
+<li>应用层负责传送各种最终形态的数据，是直接与用户打交道的层，典型协议是HTTP、FTP等。<br>理解这个结构的关键，在于理解科学家在70年代设计互联网的原始目的，就是为了传输文本。所有协议最初都是为了这个目标而设计的，互联网架构的核心就是文本对话。</li>
+</ol>
+<h1 id="TCP报文格式"><a href="#TCP报文格式" class="headerlink" title="TCP报文格式"></a>TCP报文格式</h1><p>先了解一下TCP传输的报文格式，如图：<br><img src="http://img.blog.csdn.net/20180424121631287" alt="TCP报文格式"></p>
+<p>上图中有几个字段需要重点介绍下，两个序号和三个标志位：</p>
+<ol>
+<li>序号：seq序号，占32位，用来标识从TCP源端向目的端发送的字节流，发起方发送数据时对此进行标记。</li>
+<li>确认序号：ack序号，占32位，只有ACK标志位为1时，确认序号字段才有效，ack=seq+1。</li>
+<li>标志位：共6个，即URG、ACK、PSH、RST、SYN、FIN等，具体含义如下：</li>
+<li>URG：紧急指针（urgent pointer）有效。</li>
+<li>ACK：确认序号有效标志位。</li>
+<li>PSH：接收方应该尽快将这个报文交给应用层。</li>
+<li>RST：重置连接。</li>
+<li>SYN：发起一个新连接。</li>
+<li>FIN：释放一个连接。</li>
+</ol>
+<p>需要注意的是：</p>
+<ul>
+<li>不要将确认序号ack与标志位中的ACK搞混了。</li>
+<li>确认方ack=发起方req+1，两端配对。</li>
+</ul>
+<blockquote>
+<p>SYN(synchronous建立联机)<br><br>ACK(acknowledgement 确认)<br><br>PSH(push传送)<br><br>FIN(finish结束)<br><br>RST(reset重置)<br><br>URG(urgent紧急)<br><br>Sequence number(顺序号码)<br><br>Acknowledge number(确认号码)<br><br>establish  建立，创建<br></p>
+</blockquote>
+<h1 id="TCP3次握手"><a href="#TCP3次握手" class="headerlink" title="TCP3次握手"></a>TCP3次握手</h1><p><img src="http://img.blog.csdn.net/20180424122253165" alt="三次握手示例图"></p>
+<p><img src="http://img.blog.csdn.net/20170607205709367" alt="三次握手示例图动图"></p>
+<ol>
+<li>第一次握手：Client将标志位<code>SYN</code>置为1，<code>随机产生</code>一个值<code>seq=J</code>，并将该数据包发送给Server，Client进入<code>SYN_SENT</code>状态，等待Server确认。</li>
+<li>第二次握手：Server收到数据包后由标志位<code>SYN=1</code>知道Client请求建立连接，Server将标志位<code>SYN</code>和<code>ACK</code>都置为1，<code>ack=J+1</code>，随机产生一个值<code>seq=K</code>，并将该数据包发送给Client以确认连接请求，Server进入<code>SYN_RCVD</code>状态。</li>
+<li>第三次握手：Client收到确认后，检查<code>ack</code>是否为J+1，<code>ACK</code>是否为1，如果正确则将标志位<code>ACK</code>置为1，<code>ack=K+1</code>，并将该数据包发送给Server，Server检查<code>ack</code>是否为<code>K+1</code>，<code>ACK</code>是否为1，如果正确则连接建立成功，Client和Server进入<code>ESTABLISHED</code>状态，完成三次握手，随后Client与Server之间可以开始传输数据了。</li>
+</ol>
+<h2 id="SYN攻击"><a href="#SYN攻击" class="headerlink" title="SYN攻击"></a>SYN攻击</h2><p>在三次握手过程中，Server发送<code>SYN-ACK</code>之后，收到Client的<code>ACK</code>之前的TCP连接称为<code>半连接（half-open connect）</code>，此时Server处于<code>SYN_RCVD</code>状态，当收到<code>ACK</code>后，Server转入<code>ESTABLISHED</code>状态。<code>SYN攻击</code>就是Client在短时间内伪造大量不存在的IP地址，并向Server不断地发送<code>SYN</code>包，Server回复确认包，并等待Client的确认，由于源地址是不存在的，因此，Server需要不断重发直至超时，这些伪造的<code>SYN</code>包将产时间占用未连接队列，导致正常的SYN请求因为队列满而被丢弃，从而引起网络堵塞甚至系统瘫痪。<code>SYN攻击</code>时一种典型的<code>DDOS攻击</code>，检测SYN攻击的方式非常简单，即当Server上有大量半连接状态且源IP地址是随机的，则可以断定遭到SYN攻击了，使用如下命令可以让之现行：</p>
+<pre><code># netstat -nap | grep SYN_RECV
+</code></pre><h2 id="TCP序列号预测攻击-TCP-sequence-prediction-attack"><a href="#TCP序列号预测攻击-TCP-sequence-prediction-attack" class="headerlink" title="TCP序列号预测攻击(TCP_sequence_prediction_attack)"></a>TCP序列号预测攻击(TCP_sequence_prediction_attack)</h2><h2 id="如何体现TCP的”高效、安全、可靠”"><a href="#如何体现TCP的”高效、安全、可靠”" class="headerlink" title="如何体现TCP的”高效、安全、可靠”"></a>如何体现TCP的”高效、安全、可靠”</h2><p>可以参考这篇文章：<a href="http://www.eepw.com.cn/article/201801/374917.htm" target="_blank" rel="noopener">http://www.eepw.com.cn/article/201801/374917.htm</a></p>
+<blockquote>
+<p>请注意：这里所说的”高效”只是相对TCP自己而言，因为这个”高效“会和后面我们会说到三次握手其中的第二步合并的握手相关，所以我在这里提一下，其实，UDP会因为没有了一些检测机制会比TCP更加高效，快速。</p>
+</blockquote>
+<h2 id="为什么不用两次握手或者四次握手等"><a href="#为什么不用两次握手或者四次握手等" class="headerlink" title="为什么不用两次握手或者四次握手等"></a>为什么不用两次握手或者四次握手等</h2><p>这个就需要回到，TCP的一个”高效、安全、可靠”的上面来回答。</p>
+<blockquote>
+<p>引用 <a href="https://www.zhihu.com/question/24853633/answer/115173386" target="_blank" rel="noopener">https://www.zhihu.com/question/24853633/answer/115173386</a></p>
+</blockquote>
+<p>TCP作为一种可靠传输控制协议，其 <strong>核心思想：</strong> 既要保证数据可靠传输，又要提高传输的效率，而用三次恰恰可以满足以上两方面的需求！<br>TCP可靠传输的精髓：TCP连接的一方A，由操作系统动态随机选取一个32位长的序列号（Initial Sequence Number），假设A的初始序列号为1000，以该序列号为原点，对自己将要发送的每个字节的数据进行编号，1001，1002，1003…，并把自己的初始序列号ISN告诉B，让B有一个思想准备，什么样编号的数据是合法的，什么编号是非法的，比如编号900就是非法的，同时B还可以对A每一个编号的字节数据进行确认。如果A收到B确认编号为2001，则意味着字节编号为1001-2000，共1000个字节已经安全到达。</p>
+<p>同理B也是类似的操作，假设B的初始序列号ISN为2000，以该序列号为原点，对自己将要发送的每个字节的数据进行编号，2001，2002，2003…，并把自己的初始序列号ISN告诉A，以便A可以确认B发送的每一个字节。如果B收到A确认编号为4001，则意味着字节编号为2001-4000，共2000个字节已经安全到达。</p>
+<p>一句话概括，TCP连接握手，握的是啥？</p>
+<p>通信双方数据原点的序列号！</p>
+<p>以此核心思想我们来分析二、三、四次握手的过程。</p>
+<p>A &lt;——-&gt; B</p>
+<p><strong>四次握手的过程：</strong></p>
+<p>1.1 A 发送同步信号SYN + A’s Initial sequence number </p>
+<p>1.2 B 确认收到A的同步信号，并记录 A’s ISN 到本地，命名 B’s ACK sequence number</p>
+<p>1.3 B发送同步信号SYN + B’s Initial sequence number </p>
+<p>1.4 A确认收到B的同步信号，并记录 B’s ISN 到本地，命名 A’s ACK sequence number</p>
+<p>很显然1.2和1.3 这两个步骤可以合并，只需要三次握手，可以提高连接的速度与效率。</p>
+<p><strong>二次握手的过程：</strong></p>
+<p>2.1 A 发送同步信号SYN + A’s Initial sequence number </p>
+<p>2.2 B发送同步信号SYN + B’s Initial sequence number + B’s ACK sequence number</p>
+<p>这里有一个问题，A与B就A的初始序列号达成了一致，这里是1000。但是B无法知道A是否已经接收到自己的同步信号，如果这个同步信号丢失了，A和B就B的初始序列号将无法达成一致。</p>
+<p>于是TCP的设计者将SYN这个同步标志位SYN设计成占用一个字节的编号（FIN标志位也是），既然是一个字节的数据，按照TCP对有数据的TCP segment 必须确认的原则，所以在这里A必须给B一个确认，以确认A已经接收到B的同步信号。</p>
+<p>有童鞋会说，如果A发给B的确认丢了，该如何？<br>A会超时重传这个ACK吗？不会！TCP不会为没有数据的ACK超时重传。</p>
+<p>那该如何是好？B如果没有收到A的ACK，会超时重传自己的SYN同步信号，一直到收到A的ACK为止。</p>
+<hr>
+<p>补充阅读：</p>
+<p>第一个包，即A发给B的SYN 中途被丢，没有到达B</p>
+<p>A会周期性超时重传，直到收到B的确认</p>
+<p>第二个包，即B发给A的SYN +ACK 中途被丢，没有到达A</p>
+<p>B会周期性超时重传，直到收到A的确认</p>
+<p>第三个包，即A发给B的ACK 中途被丢，没有到达B</p>
+<p>A发完ACK，单方面认为TCP为 Established状态，而B显然认为TCP为Active状态：</p>
+<p>a. 假定此时双方都没有数据发送，B会周期性超时重传，直到收到A的确认，收到之后B的TCP 连接也为 Established状态，双向可以发包。</p>
+<p>b. 假定此时A有数据发送，B收到A的 Data + ACK，自然会切换为established 状态，并接受A的 Data。</p>
+<p>c. 假定B有数据发送，数据发送不了，会一直周期性超时重传SYN + ACK，直到收到A的确认才可以发送数据。</p>
+<h1 id="TCP4次挥手"><a href="#TCP4次挥手" class="headerlink" title="TCP4次挥手"></a>TCP4次挥手</h1><p><img src="http://img.blog.csdn.net/20170607205756255" alt="TCP4次挥手"></p>
+<p>由于TCP连接时全双工的，因此，每个方向都必须要单独进行关闭，这一原则是当一方完成数据发送任务后，发送一个<code>FIN</code>来终止这一方向的连接，</p>
+<p>收到一个<code>FIN</code>只是意味着这一方向上没有数据流动了，即不会再收到数据了，但是在这个TCP连接上仍然能够发送数据，直到这一方向也发送了<code>FIN</code>。</p>
+<p>首先进行关闭的一方将执行主动关闭，而另一方则执行被动关闭，上图描述的即是如此。</p>
+<ol>
+<li>第一次挥手：Client发送一个FIN，用来关闭Client到Server的数据传送，Client进入FIN_WAIT_1状态。</li>
+<li>第二次挥手：Server收到FIN后，发送一个ACK给Client，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），Server进入CLOSE_WAIT状态。</li>
+<li>第三次挥手：Server发送一个FIN，用来关闭Server到Client的数据传送，Server进入LAST_ACK状态。</li>
+<li>第四次挥手：Client收到FIN后，Client进入TIME_WAIT状态，接着发送一个ACK给Server，确认序号为收到序号+1，Server进入CLOSED状态，完成四次挥手。</li>
+</ol>
+<p><img src="http://img.blog.csdn.net/20170606084851272?" alt="image"></p>
+<h1 id="为什么客户端最后还要等待2MSL？"><a href="#为什么客户端最后还要等待2MSL？" class="headerlink" title="为什么客户端最后还要等待2MSL？"></a>为什么客户端最后还要等待2MSL？</h1><blockquote>
+<p>MSL（Maximum Segment Lifetime），TCP允许不同的实现可以设置不同的MSL值。<br>第一，保证客户端发送的最后一个ACK报文能够到达服务器，因为这个ACK报文可能丢失，站在服务器的角度看来，我已经发送了FIN+ACK报文请求断开了，客户端还没有给我回应，应该是我发送的请求断开报文它没有收到，于是服务器又会重新发送一次，而客户端就能在这个2MSL时间段内收到这个重传的报文，接着给出回应报文，并且会重启2MSL计时器。<br>第二，防止类似与“三次握手”中提到了的“已经失效的连接请求报文段”出现在本连接中。客户端发送完最后一个确认报文后，在这个2MSL时间中，就可以使本连接持续的时间内所产生的所有报文段都从网络中消失。这样新的连接中不会出现旧连接的请求报文。<br>为什么建立连接是三次握手，关闭连接确是四次挥手呢？<br>建立连接的时候， 服务器在LISTEN状态下，收到建立连接请求的SYN报文后，把ACK和SYN放在一个报文里发送给客户端。<br>而关闭连接时，服务器收到对方的FIN报文时，仅仅表示对方不再发送数据了但是还能接收数据，而自己也未必全部数据都发送给对方了，所以己方可以立即关闭，也可以发送一些数据给对方后，再发送FIN报文给对方来表示同意现在关闭连接，因此，己方ACK和FIN一般都会分开发送，从而导致多了一次。</p>
+</blockquote>
+<h1 id="如果已经建立了连接，但是客户端突然出现故障了怎么办？"><a href="#如果已经建立了连接，但是客户端突然出现故障了怎么办？" class="headerlink" title="如果已经建立了连接，但是客户端突然出现故障了怎么办？"></a>如果已经建立了连接，但是客户端突然出现故障了怎么办？</h1><blockquote>
+<p>TCP还设有一个保活计时器，显然，客户端如果出现故障，服务器不能一直等下去，白白浪费资源。服务器每收到一次客户端的请求后都会重新复位这个计时器，时间通常是设置为2小时，若两小时还没有收到客户端的任何数据，服务器就会发送一个探测报文段，以后每隔75分钟发送一次。若一连发送10个探测报文仍然没反应，服务器就认为客户端出了故障，接着就关闭连接。</p>
+</blockquote>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p>[1] TCP的三次握手与四次挥手（详解+动图） <a href="https://blog.csdn.net/qzcsu/article/details/72861891" target="_blank" rel="noopener">https://blog.csdn.net/qzcsu/article/details/72861891</a><br><br>[2] <a href="https://betterexplained.com/articles/a-simple-introduction-to-computer-networking/" target="_blank" rel="noopener">https://betterexplained.com/articles/a-simple-introduction-to-computer-networking/</a><br><br>[3] <a href="https://www.cnblogs.com/laowz/p/6947539.html" target="_blank" rel="noopener">https://www.cnblogs.com/laowz/p/6947539.html</a><br><br>[4] <a href="https://www.cnblogs.com/imyalost/p/6086808.html" target="_blank" rel="noopener">https://www.cnblogs.com/imyalost/p/6086808.html</a><br><br>[5] <a href="https://www.cnblogs.com/phpstudy2015-6/p/6801886.html" target="_blank" rel="noopener">https://www.cnblogs.com/phpstudy2015-6/p/6801886.html</a><br><br>[6] <a href="https://www.cnblogs.com/Robin-YB/p/6668762.html" target="_blank" rel="noopener">https://www.cnblogs.com/Robin-YB/p/6668762.html</a><br><br>[7] <a href="https://www.zhihu.com/question/24853633/answer/115173386" target="_blank" rel="noopener">https://www.zhihu.com/question/24853633/answer/115173386</a><br></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/网络协议/">网络协议</a>, <a href="/categories/网络协议/tcp-ip/">tcp/ip</a>
+  </div>
+
+        
+  <div class="tags">
+    <a href="/tags/tcp-ip/">tcp/ip</a>
+  </div>
+
+        <div class = "counter">
+  <span id="busuanzi_container_page_pv" style="display:none">
+      总访问&nbsp<span id="busuanzi_value_page_pv"></span>&nbsp次
+  </span>
+</div>
+        
+  <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+  <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+  
+<section id = "relate">
+	
+                <div id=""></div>
+	
+</section>
+
+
+  
+    <section id="comment">
+    <!--   <h1 class="title">留言</h1> -->
+    
+        <script type="text/javascript" id="wumiiComments">
+            var wumiiPermaLink = "https://tincopper.github.io/2018/01/07/http/TCPIP协议理解/"; //请用代码生成文章永久的链接
+            var wumiiTitle = "TCP/IP协议理解"; //请用代码生成文章标题
+            var wumiiSitePrefix = ""; 
+            var wumiiCommentParams = "&pf=JAVASCRIPT";
+        </script>
+        <script type="text/javascript" src="http://widget.wumii.cn/ext/cw/widget"></script>
+      
+    </section>
+
+
+
+
+</div></div>
+      <aside id="sidebar" class="alignright">
+  
+<div class="widget tag">
+  <h3 class="title" id="categories">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/JVM/">JVM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/基础/">基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/集合框架/">集合框架</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工作备忘/">工作备忘</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/压测/">压测</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程/">编程</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程/hexo教程/">hexo教程</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络协议/">网络协议</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/网络协议/tcp-ip/">tcp/ip</a><span class="category-list-count">1</span></li></ul></li></ul> 
+</div>
+ 
+
+
+  <div class="widget tag">
+  <h3 class="title">微信公众账号</h3>
+    <ul class="entry">
+      <img src="/img/default/qrcode.jpg" alt="欢迎关注个人公众账号" style= "width: 100%">
+    </ul>
+</div>
+
+  
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/JVM/">JVM</a><small>1</small></li>
+  
+    <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
+  
+    <li><a href="/tags/ab压测工具/">ab压测工具</a><small>1</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>4</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>3</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/tcp-ip/">tcp/ip</a><small>1</small></li>
+  
+    <li><a href="/tags/集合框架/">集合框架</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+
+  
+  <div class="widget tag">
+    <h3 class="title">归档</h3>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">公元 2018 年</a><span class="archive-list-count">19</span></li></ul>
+  </div>
+
+</aside>
+      <div class="clearfix"></div>
+    </div>
+  
+  <footer id="footer"><div class="footer-content inner">
+  <div class="alignleft">
+  
+    &copy; 2018 tomgs
+    
+  </div>
+  <!-- <div class="alignright">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme
+    <a href="https://github.com/pengloo53/Hexo-theme-light_cn">light_cn</a>, 
+    <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  </div> -->
+  
+  <div class="visit">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </div>
+  
+  <div class="clearfix"></div>
+</div>
+</footer>
+  <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<!-- calendar widget -->
+
+
+<!-- 『不蒜子』计数服务 -->
+<script async src="http://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?c4ec2c7a97d8bada21b93c3a78422b39";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<!-- wumii关联推荐 -->
+<script type="text/javascript" src="http://widget.wumii.cn/ext/relatedItemsWidget"></script>
+
+<!-- 百度推荐 -->
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?"c4ec2c7a97d8bada21b93c3a78422b39;
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<!-- 返回顶部 -->
+<div id="toTop">
+	<a href="#">▲</a>
+	<a href="#footer">▼</a>
+</div>
+
+<!-- 站内搜索-Swiftype -->
+<!-- <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','sC-iNFrvTTNtiXEVNwo1','2.0.0');
+</script> -->
+
+<!-- fancybox -->
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+</body>
+</html>
+<!-- 
+<a href="https://github.com/tincopper" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub"></a>
+-->
