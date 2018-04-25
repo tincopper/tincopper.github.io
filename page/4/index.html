@@ -80,6 +80,89 @@
     <header>
         <div class="icon"></div>
         
+        <time datetime="2018-01-31T16:42:04.000Z"><a href="/2018/02/01/mysql/MySQL架构学习回顾/">2018-02-01</a></time>
+        
+  
+    <h1 class="title"><a href="/2018/02/01/mysql/MySQL架构学习回顾/">MySQL架构学习回顾</a></h1>
+  
+
+    </header>
+
+    <div class="entry">
+      
+        <h1 id="逻辑架构"><a href="#逻辑架构" class="headerlink" title="逻辑架构"></a>逻辑架构</h1><p>了解MySQL的架构有助于深入理解MySQL服务器，下图是MySQL的三层逻辑架构图（图片来自于网络）。<br><img src="http://p1.pstatp.com/large/5e6f000615c7616a86c1" alt="image"></p>
+<p>第一层用于对客户端的连接处理、安全认证、授权等。每个客户端连接都会在服务端拥有一个线程，每个连接发起的查询都会在对应的单独线程中执行。</p>
+<p>第二层包含了MySQL的核心服务功能，包括查询解析、分析、查询缓存、内置函数、存储过程、触发器、视图等。当客户端发起请求时，如果是SELECT操作，MySQL会先检查是否命中查询缓存，命中则直接返回查询缓存中的数据；否则，MySQL会解析查询并创建对应的内部数据结构(解析树)，执行各种优化，然后执行。</p>
+<p>第三层包含了存储引擎，存储引擎负责数据的存储和提取。MySQL中有很多种不同类型的存储引擎，每个存储引擎各不相同，MySQL服务器通过API与存储引擎通信，屏蔽了各种存储引擎之间的差异。<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2018/02/01/mysql/MySQL架构学习回顾/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+        <div class="alignright">
+          <a href="/2018/02/01/mysql/MySQL架构学习回顾/#comment" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+        <div class="icon"></div>
+        
+        <time datetime="2018-01-07T15:40:27.000Z"><a href="/2018/01/07/java/transient关键字/">2018-01-07</a></time>
+        
+  
+    <h1 class="title"><a href="/2018/01/07/java/transient关键字/">transient关键字</a></h1>
+  
+
+    </header>
+
+    <div class="entry">
+      
+        <p>transient关键字是开发中用的比较少的一个关键字，它在序列化和反序列化中比较重要，通常面试时会考察它的作用和它的使用场景，还有它在什么情况下会失效。<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2018/01/07/java/transient关键字/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+        <div class="alignright">
+          <a href="/2018/01/07/java/transient关键字/#comment" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+        <div class="icon"></div>
+        
         <time datetime="2018-01-07T15:40:27.000Z"><a href="/2018/01/07/javacollection/1、集合框架概览/">2018-01-07</a></time>
         
   
@@ -181,46 +264,6 @@
 
 
 
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-        <div class="icon"></div>
-        
-        <time datetime="2018-01-07T15:40:27.000Z"><a href="/2018/01/07/java/transient关键字/">2018-01-07</a></time>
-        
-  
-    <h1 class="title"><a href="/2018/01/07/java/transient关键字/">transient关键字</a></h1>
-  
-
-    </header>
-
-    <div class="entry">
-      
-        <p>transient关键字是开发中用的比较少的一个关键字，它在序列化和反序列化中比较重要，通常面试时会考察它的作用和它的使用场景，还有它在什么情况下会失效。<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2018/01/07/java/transient关键字/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-        <div class="alignright">
-          <a href="/2018/01/07/java/transient关键字/#comment" class="comment-link">Comments</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
     <article class="photo">
   
   <div class="post-content">
@@ -274,7 +317,7 @@
   
 <div class="widget tag">
   <h3 class="title" id="categories">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/JVM/">JVM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/基础/">基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/集合框架/">集合框架</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工作备忘/">工作备忘</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/压测/">压测</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程/">编程</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程/hexo教程/">hexo教程</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络协议/">网络协议</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/网络协议/tcp-ip/">tcp/ip</a><span class="category-list-count">1</span></li></ul></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/JVM/">JVM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/基础/">基础</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/集合框架/">集合框架</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工作备忘/">工作备忘</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/压测/">压测</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程/">编程</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程/hexo教程/">hexo教程</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络协议/">网络协议</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/网络协议/tcp-ip/">tcp/ip</a><span class="category-list-count">1</span></li></ul></li></ul> 
 </div>
  
 
@@ -302,7 +345,7 @@
   
     <li><a href="/tags/hexo/">hexo</a><small>4</small></li>
   
-    <li><a href="/tags/java/">java</a><small>3</small></li>
+    <li><a href="/tags/java/">java</a><small>4</small></li>
   
     <li><a href="/tags/spring/">spring</a><small>2</small></li>
   
@@ -318,7 +361,7 @@
   
   <div class="widget tag">
     <h3 class="title">归档</h3>
-	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">公元 2018 年</a><span class="archive-list-count">19</span></li></ul>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">公元 2018 年</a><span class="archive-list-count">20</span></li></ul>
   </div>
 
 </aside>
