@@ -121,138 +121,35 @@
     <header>
         <div class="icon"></div>
         
-        <time datetime="2018-01-31T16:42:04.000Z"><a href="/2018/02/01/mysql/MySQL架构学习回顾/">2018-02-01</a></time>
+        <time datetime="2018-03-14T14:42:23.000Z"><a href="/2018/03/14/english/20180425--The Meaning of Life/">2018-03-14</a></time>
         
   
-    <h1 class="title"><a href="/2018/02/01/mysql/MySQL架构学习回顾/">MySQL架构学习回顾</a></h1>
-  
-
-    </header>
-
-    <div class="entry">
-      
-        <h1 id="逻辑架构"><a href="#逻辑架构" class="headerlink" title="逻辑架构"></a>逻辑架构</h1><p>了解MySQL的架构有助于深入理解MySQL服务器，下图是MySQL的三层逻辑架构图（图片来自于网络）。<br><img src="http://p1.pstatp.com/large/5e6f000615c7616a86c1" alt="image"></p>
-<p>第一层用于对客户端的连接处理、安全认证、授权等。每个客户端连接都会在服务端拥有一个线程，每个连接发起的查询都会在对应的单独线程中执行。</p>
-<p>第二层包含了MySQL的核心服务功能，包括查询解析、分析、查询缓存、内置函数、存储过程、触发器、视图等。当客户端发起请求时，如果是SELECT操作，MySQL会先检查是否命中查询缓存，命中则直接返回查询缓存中的数据；否则，MySQL会解析查询并创建对应的内部数据结构(解析树)，执行各种优化，然后执行。</p>
-<p>第三层包含了存储引擎，存储引擎负责数据的存储和提取。MySQL中有很多种不同类型的存储引擎，每个存储引擎各不相同，MySQL服务器通过API与存储引擎通信，屏蔽了各种存储引擎之间的差异。<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2018/02/01/mysql/MySQL架构学习回顾/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-        <div class="alignright">
-          <a href="/2018/02/01/mysql/MySQL架构学习回顾/#comment" class="comment-link">Comments</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-        <div class="icon"></div>
-        
-        <time datetime="2018-01-07T15:40:27.000Z"><a href="/2018/01/07/java/transient关键字/">2018-01-07</a></time>
-        
-  
-    <h1 class="title"><a href="/2018/01/07/java/transient关键字/">transient关键字</a></h1>
+    <h1 class="title"><a href="/2018/03/14/english/20180425--The Meaning of Life/">The Meaning of Life</a></h1>
   
 
     </header>
 
     <div class="entry">
       
-        <p>transient关键字是开发中用的比较少的一个关键字，它在序列化和反序列化中比较重要，通常面试时会考察它的作用和它的使用场景，还有它在什么情况下会失效。<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2018/01/07/java/transient关键字/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-        <div class="alignright">
-          <a href="/2018/01/07/java/transient关键字/#comment" class="comment-link">Comments</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-        <div class="icon"></div>
-        
-        <time datetime="2018-01-07T15:40:27.000Z"><a href="/2018/01/07/javacollection/1、集合框架概览/">2018-01-07</a></time>
-        
-  
-    <h1 class="title"><a href="/2018/01/07/javacollection/1、集合框架概览/">1、集合框架概览</a></h1>
-  
-
-    </header>
-
-    <div class="entry">
-      
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#集合解决的问题"><span class="toc-text">集合解决的问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结构"><span class="toc-text">结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#集合框架总览"><span class="toc-text">集合框架总览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Collection接口"><span class="toc-text">Collection接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List接口"><span class="toc-text">List接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set接口"><span class="toc-text">Set接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Map接口"><span class="toc-text">Map接口</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#集合遍历"><span class="toc-text">集合遍历</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#多线程安全"><span class="toc-text">多线程安全</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#操作集合的工具"><span class="toc-text">操作集合的工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#问题"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文档"><span class="toc-text">参考文档</span></a></li></ol>
-    </div>
-
-        <h1 id="集合解决的问题"><a href="#集合解决的问题" class="headerlink" title="集合解决的问题"></a>集合解决的问题</h1><p>在编程中，需要管理很多对象集，因为任何数据必不可少的就是该数据是如何存储的。比如某班全部同学，某个公司所有人员资料等。</p>
-<p>要管理这些对象的存储，java必须提供某种数据结构支持。<br>由于时间、空间、安全的考虑，有各种不同的实现。比如ArrayList、Vector、HashMap、LinkedList、TreeMap、HashSet等多种实现。</p>
-<p>为了屏蔽实现差异，java提供了一个Collection(集合)接口，规定必须实现一些公用的方法。</p>
-<p>比如 add、remove、size等等这样，不管底层如何实现，我都知道他们至少拥有上面方法。</p>
-<p>一句话java集合就是提供一组通用接口的，以一定的方式组织、存储数据、管理数据的数据结构实现。</p>
-<blockquote>
-<p>对于集合，我认为关注的点主要有四点：</p>
-<ol>
-<li>是否允许空</li>
-<li>是否允许重复数据</li>
-<li>是否有序，有序的意思是读取数据的顺序和存放数据的顺序是否一致</li>
-<li>是否线程安全</li>
-</ol>
+        <blockquote>
+<p>原文地址：<a href="https://ireading.baicizhan.com/react_reading/reading/article/161?from_package=default&amp;timestamp=1524660099000" target="_blank" rel="noopener">https://ireading.baicizhan.com/react_reading/reading/article/161?from_package=default&amp;timestamp=1524660099000</a></p>
 </blockquote>
-<p>根据数据结构这一课程定义的<code>ADT 抽象数据类型结构</code>，其实Java中集合的数据结构类型也可以做为类比学习。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ADT 集合抽象数据类型名 &#123;</span><br><span class="line">    数据对象: &lt;数据对象的定义&gt;</span><br><span class="line">    数据关系: &lt;数据关系的定义&gt;</span><br><span class="line">    基本操作: &lt;基本操作的定义&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h1><h2 id="集合框架总览"><a href="#集合框架总览" class="headerlink" title="集合框架总览"></a>集合框架总览</h2><p><img src="http://img.blog.csdn.net/20180315102921162" alt="集合框架总览"></p>
-<h2 id="Collection接口"><a href="#Collection接口" class="headerlink" title="Collection接口"></a>Collection接口</h2><p><img src="http://img.blog.csdn.net/20180315102626272" alt="Collection接口"></p>
-<h2 id="List接口"><a href="#List接口" class="headerlink" title="List接口"></a>List接口</h2><p><img src="http://img.blog.csdn.net/2018031510244586" alt="List接口"></p>
-<h2 id="Set接口"><a href="#Set接口" class="headerlink" title="Set接口"></a>Set接口</h2><p><img src="http://img.blog.csdn.net/2018031510282416" alt="Set接口"></p>
-<h2 id="Map接口"><a href="#Map接口" class="headerlink" title="Map接口"></a>Map接口</h2><p><img src="http://img.blog.csdn.net/20180315102757704" alt="Map接口"></p>
-<h1 id="集合遍历"><a href="#集合遍历" class="headerlink" title="集合遍历"></a>集合遍历</h1><p>迭代器Iterator</p>
-<h1 id="多线程安全"><a href="#多线程安全" class="headerlink" title="多线程安全"></a>多线程安全</h1><p>concurrent包下的并发集合工具、Collections下的包装方法。</p>
-<h1 id="操作集合的工具"><a href="#操作集合的工具" class="headerlink" title="操作集合的工具"></a>操作集合的工具</h1><p>Arrays、Collections</p>
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>快速迭代失败</p>
-<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p>源码专题：<a href="http://blog.csdn.net/column/details/collection.html" target="_blank" rel="noopener">http://blog.csdn.net/column/details/collection.html</a></p>
-
+<h1 id="The-Meaning-of-Life"><a href="#The-Meaning-of-Life" class="headerlink" title="The Meaning of Life"></a>The Meaning of Life</h1><p>Edward Perman Cole(爱德华.佩瑞曼.科尔) died in May. It was a Sunday afternoon and there wasn’t a cloud in the sky(天空万里无云).</p>
+<p>It’s difficult to understand the sum of a person’s life. Some people would tell you it’s measured by the ones left behind, some believe that it can be measured in faith, some say by love, other folks say life has no meaning at all . . .</p>
+<p>Me, I believe that you measure yourself by the people who measure themselves by you.</p>
+<p>What I can tell you for sure is that by any measure, Edward Cole lived more in his last days on earth than most people manage to wring out of a lifetime. I know that when he died his eyes were closed and his heart was open . . .</p>
       
     </div>
     <footer>
       
         
+          <div class="alignleft">
+            <a href="/2018/03/14/english/20180425--The Meaning of Life/#more" class="more-link">Read More</a>
+          </div>
+        
         
         <div class="alignright">
-          <a href="/2018/01/07/javacollection/1、集合框架概览/#comment" class="comment-link">Comments</a>
+          <a href="/2018/03/14/english/20180425--The Meaning of Life/#comment" class="comment-link">Comments</a>
         </div>
         
       
@@ -270,30 +167,119 @@
     <header>
         <div class="icon"></div>
         
-        <time datetime="2018-01-07T15:40:27.000Z"><a href="/2018/01/07/http/TCPIP协议理解/">2018-01-07</a></time>
+        <time datetime="2018-03-14T14:42:23.000Z"><a href="/2018/03/14/english/20180426--If today were the last day of my life - 副本/">2018-03-14</a></time>
         
   
-    <h1 class="title"><a href="/2018/01/07/http/TCPIP协议理解/">TCP/IP协议理解</a></h1>
+    <h1 class="title"><a href="/2018/03/14/english/20180426--If today were the last day of my life - 副本/">If today were the last day of my life</a></h1>
   
 
     </header>
 
     <div class="entry">
       
-        <h1 id="什么是TCP-IP模型？"><a href="#什么是TCP-IP模型？" class="headerlink" title="什么是TCP/IP模型？"></a>什么是TCP/IP模型？</h1><p>TCP/IP模型是一系列网络协议的总称，这些协议的目的，就是使计算机之间可以进行信息交换。<br>所谓”协议”可以理解成机器之间交谈的语言，每一种协议都有自己的目的。TCP/IP模型一共包括几百种协议，对互联网上交换信息的各个方面都做了规定。</p>
-<p>TCP存在之于”互联网“的意义有三点： - 让数据进行”可靠“，”高效“，”安全“的传输<br>
+        <p><img src="https://7n.bczcdn.com/reading_image/rimg_999999999_1500277053_24793.jpeg" alt="JOBS"></p>
+<p>For the past 33 years, I’ve looked in the mirror every morning and asked myself: “If today were the last day of my life, would I want to do what I am about to do today?” And whenever the answer has been “No” for too many days in a row, I know I need to change something.</p>
+<p>Remembering that I’ll be dead soon is the most important tool I’ve ever encountered to help me make the big choices in life. Because almost everything — all external expectations, all pride, all fear of embarrassment or failure — these things just fall away in the face of death, leaving only what is truly important.</p>
+<p>Remembering that you are going to die is the best way I know to avoid the trap of thinking you have something to lose. You are already naked. There is no reason not to follow your heart.</p>
+<p>About a year ago I was diagnosed with cancer. I had a scan at 7:30 in the morning, and it clearly showed a tumor on my pancreas. I didn’t even know what a pancreas was. The doctors told me this was almost certainly a type of cancer that is incurable, and that I should expect to live no longer than three to six months.</p>
+<p>My doctor advised me to go home and get my affairs in order, which is doctor’s code for prepare to die. It means to try and tell your kids everything. You thought you’d have the next 10 years to tell them in just a few months. It means to make sure everything is buttoned up so that it will be as easy as possible for your family.</p>
+<p>It means to say your goodbyes.</p>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2018/01/07/http/TCPIP协议理解/#more" class="more-link">Read More</a>
+            <a href="/2018/03/14/english/20180426--If today were the last day of my life - 副本/#more" class="more-link">Read More</a>
           </div>
         
         
         <div class="alignright">
-          <a href="/2018/01/07/http/TCPIP协议理解/#comment" class="comment-link">Comments</a>
+          <a href="/2018/03/14/english/20180426--If today were the last day of my life - 副本/#comment" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+        <div class="icon"></div>
+        
+        <time datetime="2018-03-14T14:42:23.000Z"><a href="/2018/03/14/hexo/1、hexo使用指南/">2018-03-14</a></time>
+        
+  
+    <h1 class="title"><a href="/2018/03/14/hexo/1、hexo使用指南/">1、hexo使用指南</a></h1>
+  
+
+    </header>
+
+    <div class="entry">
+      
+        <h1 id="hexo使用指南"><a href="#hexo使用指南" class="headerlink" title="hexo使用指南"></a>hexo使用指南</h1><h1 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h1><p>gitforwindos : <a href="https://gitforwindows.org/" target="_blank" rel="noopener">https://gitforwindows.org/</a></p>
+<p>git downloads : <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">https://git-scm.com/downloads</a><br>以上两个地址都可以下载安装，安装步骤参其他文档。</p>
+<h1 id="安装nodeJS"><a href="#安装nodeJS" class="headerlink" title="安装nodeJS"></a>安装nodeJS</h1><p>官方网址：<a href="http://nodejs.cn/download/" target="_blank" rel="noopener">http://nodejs.cn/download/</a><br>进入官方地址进行下载然后安装，安装步骤很简单，就不进行演示了。</p>
+<h1 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h1><p>在安装hexo之前假设你已经有了github账号了，以及安装了上述的git和nodejs环境。</p>
+<h2 id="创建安装目录"><a href="#创建安装目录" class="headerlink" title="创建安装目录"></a>创建安装目录</h2><p>首先需要创建一个安装目录用于安装hexo，然后我这里创建了一个<code>blog</code>目录。</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2018/03/14/hexo/1、hexo使用指南/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+        <div class="alignright">
+          <a href="/2018/03/14/hexo/1、hexo使用指南/#comment" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+        <div class="icon"></div>
+        
+        <time datetime="2018-03-14T14:42:23.000Z"><a href="/2018/03/14/hexo/4、如何将本地的文章进行分类管理/">2018-03-14</a></time>
+        
+  
+    <h1 class="title"><a href="/2018/03/14/hexo/4、如何将本地的文章进行分类管理/">4、如何将本地的文章进行分类管理</a></h1>
+  
+
+    </header>
+
+    <div class="entry">
+      
+        <h1 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h1><p>刚开始在使用hexo写博客的时候发现，就是新建的文章都是在<code>_posts</code>目录中，现在写的东西少还好，到时如果多了的话，在本地就不好维护了，希望能够使用分类把本地的文章进行分类，就像下图中的<code>java</code>目录，我希望放Java相关的文章到这个目录。在线上展示的分类我们知道可以通过<code>categories</code>和<code>tags</code>进行分类展示。那么这个要怎么解决？<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2018/03/14/hexo/4、如何将本地的文章进行分类管理/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+        <div class="alignright">
+          <a href="/2018/03/14/hexo/4、如何将本地的文章进行分类管理/#comment" class="comment-link">Comments</a>
         </div>
         
       
@@ -319,7 +305,7 @@
   
 <div class="widget tag">
   <h3 class="title" id="categories">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/JVM/">JVM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/基础/">基础</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/集合框架/">集合框架</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工作备忘/">工作备忘</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/压测/">压测</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程/">编程</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程/hexo教程/">hexo教程</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络协议/">网络协议</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/网络协议/tcp-ip/">tcp/ip</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/英语阅读/">英语阅读</a><span class="category-list-count">1</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/JVM/">JVM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/基础/">基础</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/集合框架/">集合框架</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工作备忘/">工作备忘</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/压测/">压测</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程/">编程</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程/hexo教程/">hexo教程</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络协议/">网络协议</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/网络协议/tcp-ip/">tcp/ip</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/英语/">英语</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/英语/常用知识点/">常用知识点</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/英语/百词斩阅读/">百词斩阅读</a><span class="category-list-count">2</span></li></ul></li></ul> 
 </div>
  
 
@@ -353,7 +339,7 @@
   
     <li><a href="/tags/tcp-ip/">tcp/ip</a><small>1</small></li>
   
-    <li><a href="/tags/英语阅读/">英语阅读</a><small>1</small></li>
+    <li><a href="/tags/英语/">英语</a><small>5</small></li>
   
     <li><a href="/tags/集合框架/">集合框架</a><small>1</small></li>
   
@@ -365,7 +351,7 @@
   
   <div class="widget tag">
     <h3 class="title">归档</h3>
-	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">公元 2018 年</a><span class="archive-list-count">21</span></li></ul>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">公元 2018 年</a><span class="archive-list-count">25</span></li></ul>
   </div>
 
 </aside>

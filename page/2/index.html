@@ -80,6 +80,130 @@
     <header>
         <div class="icon"></div>
         
+        <time datetime="2018-04-19T15:19:52.000Z"><a href="/2018/04/19/spring/1、扩展spring-mvc，实现自定义参数转换/">2018-04-19</a></time>
+        
+  
+    <h1 class="title"><a href="/2018/04/19/spring/1、扩展spring-mvc，实现自定义参数转换/">1、扩展spring-mvc，实现自定义参数转换</a></h1>
+  
+
+    </header>
+
+    <div class="entry">
+      
+        <p><br><br><br></p>
+<h1 id="需要明白的问题"><a href="#需要明白的问题" class="headerlink" title="需要明白的问题"></a>需要明白的问题</h1><h2 id="1-Spring-MVC处理-RequestBody和-ResponseBody的流程分析"><a href="#1-Spring-MVC处理-RequestBody和-ResponseBody的流程分析" class="headerlink" title="1. Spring MVC处理@RequestBody和@ResponseBody的流程分析"></a>1. Spring MVC处理@RequestBody和@ResponseBody的流程分析</h2><p>在SpringMVC 默认处理JSON格式数据是通过@RequestBody和@ResponseBody注解进行参数绑定，<strong><em><code>RequestResponseBodyMethodProcessor</code></em></strong> 这个类实现了对RequestBody和ResponseBody注解的处理。</p>
+<p>RequestResponseBodyMethodProcessor类的层级关系如下：<br><img src="http://img.blog.csdn.net/20180117221331530?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvVG9tZ3M=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="RequestResponseBodyMethodProcessor类结构"><br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2018/04/19/spring/1、扩展spring-mvc，实现自定义参数转换/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+        <div class="alignright">
+          <a href="/2018/04/19/spring/1、扩展spring-mvc，实现自定义参数转换/#comment" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+        <div class="icon"></div>
+        
+        <time datetime="2018-04-06T03:02:17.000Z"><a href="/2018/04/06/AB压测工具使用/">2018-04-06</a></time>
+        
+  
+    <h1 class="title"><a href="/2018/04/06/AB压测工具使用/">AB压测工具使用</a></h1>
+  
+
+    </header>
+
+    <div class="entry">
+      
+        <h1 id="AB压测工具的使用"><a href="#AB压测工具的使用" class="headerlink" title="AB压测工具的使用"></a>AB压测工具的使用</h1><p>官网：<br><a href="http://mirror.bit.edu.cn/apache/httpd/" target="_blank" rel="noopener">http://mirror.bit.edu.cn/apache/httpd/</a><br><a href="http://httpd.apache.org/docs/2.4/programs/ab.html" target="_blank" rel="noopener">http://httpd.apache.org/docs/2.4/programs/ab.html</a><br><a href="http://httpd.apache.org/docs/2.2/" target="_blank" rel="noopener">http://httpd.apache.org/docs/2.2/</a></p>
+<h1 id="什么是AB"><a href="#什么是AB" class="headerlink" title="什么是AB"></a>什么是AB</h1><p>它是Apache服务器的一个命令，ab命令模拟多线程并发请求，测试服务器负载压力，也可以测试nginx、lighthttp、IIS等其它Web服务器的压力。<br>ab命令对发出负载的计算机要求很低，既不会占用很多CPU，也不会占用太多的内存，但却会给目标服务器造成巨大的负载，因此是某些DDOS攻击之必备良药，老少皆宜。自己使用也须谨慎。否则压测负载过多，造成目标服务器直接因内存耗光死机，而不得不硬重启，得不偿失。<br>在带宽不足的情况下，最好是本机进行测试，建议使用内网的另一台或者多台服务器通过内网进行测试，这样得出的数据，准确度会高很多。远程对web服务器进行压力测试，往往效果不理想（因为网络延时过大或带宽不足）<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2018/04/06/AB压测工具使用/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+        <div class="alignright">
+          <a href="/2018/04/06/AB压测工具使用/#comment" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+        <div class="icon"></div>
+        
+        <time datetime="2018-03-19T16:39:23.000Z"><a href="/2018/03/20/mywork/MyEclipse 查看 [Deployment Assembly] 出现 [the currently displayed page contains invalid values]/">2018-03-20</a></time>
+        
+  
+    <h1 class="title"><a href="/2018/03/20/mywork/MyEclipse 查看 [Deployment Assembly] 出现 [the currently displayed page contains invalid values]/">MyEclipse 查看 [Deployment Assembly] 出现 [the currently displayed page contains invalid values]</a></h1>
+  
+
+    </header>
+
+    <div class="entry">
+      
+        <p>MyEclipse 查看 [Deployment Assembly] 出现 [the currently displayed page contains invalid values]</p>
+<h2 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h2><p>在myeclipse测试发布maven项目的时候发现，发布不上去，然后查看 [Deployment Assembly] 出现 [the currently displayed page contains invalid values] 异常问题。<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2018/03/20/mywork/MyEclipse 查看 [Deployment Assembly] 出现 [the currently displayed page contains invalid values]/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+        <div class="alignright">
+          <a href="/2018/03/20/mywork/MyEclipse 查看 [Deployment Assembly] 出现 [the currently displayed page contains invalid values]/#comment" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+        <div class="icon"></div>
+        
         <time datetime="2018-03-19T16:39:23.000Z"><a href="/2018/03/20/mywork/RestEasy统一异常处理问题，处理之后前端一直处于等待状态未返回异常结果/">2018-03-20</a></time>
         
   
@@ -159,135 +283,6 @@
 
 
 
-
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-        <div class="icon"></div>
-        
-        <time datetime="2018-03-19T16:39:23.000Z"><a href="/2018/03/20/mywork/MyEclipse 查看 [Deployment Assembly] 出现 [the currently displayed page contains invalid values]/">2018-03-20</a></time>
-        
-  
-    <h1 class="title"><a href="/2018/03/20/mywork/MyEclipse 查看 [Deployment Assembly] 出现 [the currently displayed page contains invalid values]/">MyEclipse 查看 [Deployment Assembly] 出现 [the currently displayed page contains invalid values]</a></h1>
-  
-
-    </header>
-
-    <div class="entry">
-      
-        <p>MyEclipse 查看 [Deployment Assembly] 出现 [the currently displayed page contains invalid values]</p>
-<h2 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h2><p>在myeclipse测试发布maven项目的时候发现，发布不上去，然后查看 [Deployment Assembly] 出现 [the currently displayed page contains invalid values] 异常问题。<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2018/03/20/mywork/MyEclipse 查看 [Deployment Assembly] 出现 [the currently displayed page contains invalid values]/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-        <div class="alignright">
-          <a href="/2018/03/20/mywork/MyEclipse 查看 [Deployment Assembly] 出现 [the currently displayed page contains invalid values]/#comment" class="comment-link">Comments</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-        <div class="icon"></div>
-        
-        <time datetime="2018-03-19T16:39:23.000Z"><a href="/2018/03/20/mywork/sftp JSCH连接sftp出现如下报错解决办法/">2018-03-20</a></time>
-        
-  
-    <h1 class="title"><a href="/2018/03/20/mywork/sftp JSCH连接sftp出现如下报错解决办法/">sftp JSCH连接sftp出现如下报错解决办法</a></h1>
-  
-
-    </header>
-
-    <div class="entry">
-      
-        
-    <div id="toc">
-        
-    </div>
-
-        <p><strong>问题描述:</strong> sftp JSCH连接sftp出现如下报错解决办法：<br>com.jcraft.jsch.JSchException:<br>Session.connect: java.security.InvalidAlgorithmParameterException: Prime size must be multiple of 64, and can only range from 512 to 1024 (inclusive)<br>    at com.jcraft.jsch.Session.connect(Session.java:565)<br>    at com.jcraft.jsch.Session.connect(Session.java:183)<br>    …</p>
-<p><strong>解决方法：</strong><br>1、换用jdk版本为1.8<br>2、更换jsch的版本，jsch-0.1.54.jar替换为jsch-0.1.52.jar或jsch-0.1.51.jar<br>3、如果上面两种方式解决不了，就按照google说的在服务器上添加ssh 弱算法。PS：这个没有试过</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-        <div class="alignright">
-          <a href="/2018/03/20/mywork/sftp JSCH连接sftp出现如下报错解决办法/#comment" class="comment-link">Comments</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-        <div class="icon"></div>
-        
-        <time datetime="2018-03-15T15:56:51.000Z"><a href="/2018/03/15/jvm/JVM工具/">2018-03-15</a></time>
-        
-  
-    <h1 class="title"><a href="/2018/03/15/jvm/JVM工具/">JVM工具</a></h1>
-  
-
-    </header>
-
-    <div class="entry">
-      
-        <h1 id="jps"><a href="#jps" class="headerlink" title="jps"></a>jps</h1><p>JPS 查看当前运行java进程<br>JVM Process Status Tool,显示指定系统内所有的HotSpot虚拟机进程。</p>
-<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jps -lvm 用于查看当前机器上运行的java进程。 </span><br><span class="line"></span><br><span class="line">命令格式 jps [options] [hostid] </span><br><span class="line">注：如果不指定hostid就默认为当前主机或服务器。</span><br></pre></td></tr></table></figure>
-<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><blockquote>
-<p>常用命令行参数选项说明如下： <br><br>-q &nbsp;不输出类名、Jar名和传入main方法的参数 <br><br>-m 输出传入main方法的参数 <br><br>-l &nbsp;&nbsp;输出main类或Jar的全限名 <br><br>-v &nbsp;输出传入JVM的参数<br><br>-V 输出通过标记的文件传递给JVM的参数（.hotspotrc文件，或者是通过参数-XX:Flags=指定的文件）。<br><br>-J 用于传递jvm选项到由javac调用的java加载器中，例如，“-J-Xms48m”将把启动内存设置为48M，使用-J选项可以非常方便的向基于Java的开发的底层虚拟机应用程序传递参数。</p>
-</blockquote>
-<p>jps有问题, 使用 jps -J-Djps.debug=true -J-Djps.printStackTrace=true 可以获得Jps错误详细信息<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2018/03/15/jvm/JVM工具/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-        <div class="alignright">
-          <a href="/2018/03/15/jvm/JVM工具/#comment" class="comment-link">Comments</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
  
 <nav id="pagination">
   
@@ -303,7 +298,7 @@
   
 <div class="widget tag">
   <h3 class="title" id="categories">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/JVM/">JVM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/基础/">基础</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/集合框架/">集合框架</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工作备忘/">工作备忘</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/压测/">压测</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程/">编程</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程/hexo教程/">hexo教程</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络协议/">网络协议</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/网络协议/tcp-ip/">tcp/ip</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/英语阅读/">英语阅读</a><span class="category-list-count">1</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/JVM/">JVM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/基础/">基础</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/集合框架/">集合框架</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工作备忘/">工作备忘</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/压测/">压测</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程/">编程</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程/hexo教程/">hexo教程</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络协议/">网络协议</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/网络协议/tcp-ip/">tcp/ip</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/英语/">英语</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/英语/常用知识点/">常用知识点</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/英语/百词斩阅读/">百词斩阅读</a><span class="category-list-count">2</span></li></ul></li></ul> 
 </div>
  
 
@@ -337,7 +332,7 @@
   
     <li><a href="/tags/tcp-ip/">tcp/ip</a><small>1</small></li>
   
-    <li><a href="/tags/英语阅读/">英语阅读</a><small>1</small></li>
+    <li><a href="/tags/英语/">英语</a><small>5</small></li>
   
     <li><a href="/tags/集合框架/">集合框架</a><small>1</small></li>
   
@@ -349,7 +344,7 @@
   
   <div class="widget tag">
     <h3 class="title">归档</h3>
-	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">公元 2018 年</a><span class="archive-list-count">21</span></li></ul>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">公元 2018 年</a><span class="archive-list-count">25</span></li></ul>
   </div>
 
 </aside>
