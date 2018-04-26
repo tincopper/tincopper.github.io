@@ -245,10 +245,10 @@
     <header>
         <div class="icon"></div>
         
-        <time datetime="2018-03-19T16:39:23.000Z"><a href="/2018/03/20/mywork/sftp JSCH连接sftp出现如下报错解决办法/">2018-03-20</a></time>
+        <time datetime="2018-03-19T16:39:23.000Z"><a href="/2018/03/20/mywork/关于libjnotify.so的版本在linux上不兼容的问题解决/">2018-03-20</a></time>
         
   
-    <h1 class="title"><a href="/2018/03/20/mywork/sftp JSCH连接sftp出现如下报错解决办法/">sftp JSCH连接sftp出现如下报错解决办法</a></h1>
+    <h1 class="title"><a href="/2018/03/20/mywork/关于libjnotify.so的版本在linux上不兼容的问题解决/">关于libjnotify.so的版本在linux上不兼容的问题解决</a></h1>
   
 
     </header>
@@ -257,11 +257,32 @@
       
         
     <div id="toc">
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、问题描述"><span class="toc-text">一、问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、解决办法"><span class="toc-text">二、解决办法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方法二：升级GLIBC"><span class="toc-text">方法二：升级GLIBC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、参考链接："><span class="toc-text">三、参考链接：</span></a></li></ol>
     </div>
 
-        <p><strong>问题描述:</strong> sftp JSCH连接sftp出现如下报错解决办法：<br>com.jcraft.jsch.JSchException:<br>Session.connect: java.security.InvalidAlgorithmParameterException: Prime size must be multiple of 64, and can only range from 512 to 1024 (inclusive)<br>    at com.jcraft.jsch.Session.connect(Session.java:565)<br>    at com.jcraft.jsch.Session.connect(Session.java:183)<br>    …</p>
-<p><strong>解决方法：</strong><br>1、换用jdk版本为1.8<br>2、更换jsch的版本，jsch-0.1.54.jar替换为jsch-0.1.52.jar或jsch-0.1.51.jar<br>3、如果上面两种方式解决不了，就按照google说的在服务器上添加ssh 弱算法。PS：这个没有试过</p>
+        <h2 id="一、问题描述"><a href="#一、问题描述" class="headerlink" title="一、问题描述"></a>一、问题描述</h2><p>SEVERE: Servlet [InitServlet] in web application [] threw load() exception<br>java.lang.UnsatisfiedLinkError:/payment/tomcats/tomcat-payment-gateway/lib/libjnotify.so:/lib64/libc.so.6:version`GLIBC_2.12’not found (required by /payment/tomcats/tomcat-payment-gateway/lib/libjnotify.so)</p>
+<p>&lt;!–more&gt;</p>
+<h2 id="二、解决办法"><a href="#二、解决办法" class="headerlink" title="二、解决办法"></a>二、解决办法</h2><p>###方法一：重新编译jnotify生成libjnotify.so<br>1、使用[strings /lib64/libc.so.6 | grep GLIBC] 查看支持系统中的GLIBC版本<br><code>payment@test1:~/tomcats/tomcat-payment-gateway/logs&gt; 
+strings /lib64/libc.so.6 | grep GLIBC</code><br>GLIBC_2.2.5<br>GLIBC_2.2.6<br>GLIBC_2.3<br>GLIBC_2.3.2<br>GLIBC_2.3.3<br>GLIBC_2.3.4<br>GLIBC_2.4<br>GLIBC_2.5<br>GLIBC_2.6<br>GLIBC_2.7<br>GLIBC_2.8<br>GLIBC_2.9<br>GLIBC_2.10<br>GLIBC_2.11<br>GLIBC_PRIVATE</p>
+<p>发现系统的glibc比较老旧，最新的为GLIBC_2.11。</p>
+<p>2、为了安全和稳定起见，自己编译jnotify的代码生成libjnotify.so</p>
+<p>3、执行 <code>gcc -I /usr/java/jdk1.7.0_80/include/ -I  
+/usr/java/jdk1.7.0_80/include/linux/ -fPIC -g -c 
+net_contentobjects_jnotify_linux_JNotify_linux.c -o libjnotify.o</code><br>会看到多个libjnotify.o</p>
+<p>4、执行 <code>gcc -g -shared -W1 -o libjnotify.so libjnotify.o -lc</code><br>就会看到 libjnotify.so</p>
+<p>5、然后把 libjnotify.so复制到java.library.path下面去就行了</p>
+<h3 id="方法二：升级GLIBC"><a href="#方法二：升级GLIBC" class="headerlink" title="方法二：升级GLIBC"></a>方法二：升级GLIBC</h3><p>1、glibc下载地址：<a href="http://ftp.gnu.org/gnu/glibc/" target="_blank" rel="noopener">http://ftp.gnu.org/gnu/glibc/</a><br>2、解压<br>   <code>$ mv glibc-ports-2.15 glibc-2.15/ports</code><br>   <code>$ mkdir glibc-build-2.15 &amp;&amp;cd glibc-build-2.15</code><br>   <code>$ ./glibc-2.15/configure
+    --prefix=/usr/local/glibc_mips CC=mipsel-linux-gcc 
+    --host=mipsel-linux 
+    --build=i686-pc-linux-gnu 
+    --enable-add-on=nptl 
+    libc_cv_forced_unwind=yes 
+    libc_cv_c_cleanup=yes 
+    libc_cv_mips_tls=yes 
+    libc_cv_gnu99_inline=yes</code> </p>
+<p>3、第2步没问题执行<br><code>$ make &amp;&amp;make install</code><br>4、查看是否升级完成<br><code>$ ls -l /lib/libc.so.6</code><br>输出：lrwxrwxrwx 1 root root 14 Jun 16 11:24 /lib/libc.so.6 -&gt; libc-2.12.3.so<br>说明升级完成。</p>
+<h2 id="三、参考链接："><a href="#三、参考链接：" class="headerlink" title="三、参考链接："></a>三、参考链接：</h2><p><a href="http://blog.csdn.net/akon_vm/article/details/9329089" target="_blank" rel="noopener">http://blog.csdn.net/akon_vm/article/details/9329089</a><br><a href="http://blog.csdn.net/ldl22847/article/details/18702645" target="_blank" rel="noopener">http://blog.csdn.net/ldl22847/article/details/18702645</a></p>
+<p><strong>PS：</strong><br>1、64位linux系统可以运行32位和64位程序，32位系统只能运行32位程序<br>2、<code>file topas</code>可以检查这个文件是32位还是64位<br>3、<code>ldd topas</code>可以检查这个文件需要哪些依赖库文件，可能依赖的库文件libG4processes.so是32位不满足需求</p>
 
       
     </div>
@@ -270,7 +291,7 @@
         
         
         <div class="alignright">
-          <a href="/2018/03/20/mywork/sftp JSCH连接sftp出现如下报错解决办法/#comment" class="comment-link">Comments</a>
+          <a href="/2018/03/20/mywork/关于libjnotify.so的版本在linux上不兼容的问题解决/#comment" class="comment-link">Comments</a>
         </div>
         
       
