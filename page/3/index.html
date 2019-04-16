@@ -80,6 +80,70 @@
     <header>
         <div class="icon"></div>
         
+        <time datetime="2018-03-19T16:39:23.000Z"><a href="/2018/03/20/mywork/关于libjnotify.so的版本在linux上不兼容的问题解决/">2018-03-20</a></time>
+        
+  
+    <h1 class="title"><a href="/2018/03/20/mywork/关于libjnotify.so的版本在linux上不兼容的问题解决/">关于libjnotify.so的版本在linux上不兼容的问题解决</a></h1>
+  
+
+    </header>
+
+    <div class="entry">
+      
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、问题描述"><span class="toc-text">一、问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、解决办法"><span class="toc-text">二、解决办法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方法二：升级GLIBC"><span class="toc-text">方法二：升级GLIBC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、参考链接："><span class="toc-text">三、参考链接：</span></a></li></ol>
+    </div>
+
+        <h2 id="一、问题描述"><a href="#一、问题描述" class="headerlink" title="一、问题描述"></a>一、问题描述</h2><p>SEVERE: Servlet [InitServlet] in web application [] threw load() exception<br>java.lang.UnsatisfiedLinkError:/payment/tomcats/tomcat-payment-gateway/lib/libjnotify.so:/lib64/libc.so.6:version`GLIBC_2.12’not found (required by /payment/tomcats/tomcat-payment-gateway/lib/libjnotify.so)</p>
+<p>&lt;!–more&gt;</p>
+<h2 id="二、解决办法"><a href="#二、解决办法" class="headerlink" title="二、解决办法"></a>二、解决办法</h2><p>###方法一：重新编译jnotify生成libjnotify.so<br>1、使用[strings /lib64/libc.so.6 | grep GLIBC] 查看支持系统中的GLIBC版本<br><code>payment@test1:~/tomcats/tomcat-payment-gateway/logs&gt; 
+strings /lib64/libc.so.6 | grep GLIBC</code><br>GLIBC_2.2.5<br>GLIBC_2.2.6<br>GLIBC_2.3<br>GLIBC_2.3.2<br>GLIBC_2.3.3<br>GLIBC_2.3.4<br>GLIBC_2.4<br>GLIBC_2.5<br>GLIBC_2.6<br>GLIBC_2.7<br>GLIBC_2.8<br>GLIBC_2.9<br>GLIBC_2.10<br>GLIBC_2.11<br>GLIBC_PRIVATE</p>
+<p>发现系统的glibc比较老旧，最新的为GLIBC_2.11。</p>
+<p>2、为了安全和稳定起见，自己编译jnotify的代码生成libjnotify.so</p>
+<p>3、执行 <code>gcc -I /usr/java/jdk1.7.0_80/include/ -I  
+/usr/java/jdk1.7.0_80/include/linux/ -fPIC -g -c 
+net_contentobjects_jnotify_linux_JNotify_linux.c -o libjnotify.o</code><br>会看到多个libjnotify.o</p>
+<p>4、执行 <code>gcc -g -shared -W1 -o libjnotify.so libjnotify.o -lc</code><br>就会看到 libjnotify.so</p>
+<p>5、然后把 libjnotify.so复制到java.library.path下面去就行了</p>
+<h3 id="方法二：升级GLIBC"><a href="#方法二：升级GLIBC" class="headerlink" title="方法二：升级GLIBC"></a>方法二：升级GLIBC</h3><p>1、glibc下载地址：<a href="http://ftp.gnu.org/gnu/glibc/" target="_blank" rel="noopener">http://ftp.gnu.org/gnu/glibc/</a><br>2、解压<br>   <code>$ mv glibc-ports-2.15 glibc-2.15/ports</code><br>   <code>$ mkdir glibc-build-2.15 &amp;&amp;cd glibc-build-2.15</code><br>   <code>$ ./glibc-2.15/configure
+    --prefix=/usr/local/glibc_mips CC=mipsel-linux-gcc 
+    --host=mipsel-linux 
+    --build=i686-pc-linux-gnu 
+    --enable-add-on=nptl 
+    libc_cv_forced_unwind=yes 
+    libc_cv_c_cleanup=yes 
+    libc_cv_mips_tls=yes 
+    libc_cv_gnu99_inline=yes</code> </p>
+<p>3、第2步没问题执行<br><code>$ make &amp;&amp;make install</code><br>4、查看是否升级完成<br><code>$ ls -l /lib/libc.so.6</code><br>输出：lrwxrwxrwx 1 root root 14 Jun 16 11:24 /lib/libc.so.6 -&gt; libc-2.12.3.so<br>说明升级完成。</p>
+<h2 id="三、参考链接："><a href="#三、参考链接：" class="headerlink" title="三、参考链接："></a>三、参考链接：</h2><p><a href="http://blog.csdn.net/akon_vm/article/details/9329089" target="_blank" rel="noopener">http://blog.csdn.net/akon_vm/article/details/9329089</a><br><a href="http://blog.csdn.net/ldl22847/article/details/18702645" target="_blank" rel="noopener">http://blog.csdn.net/ldl22847/article/details/18702645</a></p>
+<p><strong>PS：</strong><br>1、64位linux系统可以运行32位和64位程序，32位系统只能运行32位程序<br>2、<code>file topas</code>可以检查这个文件是32位还是64位<br>3、<code>ldd topas</code>可以检查这个文件需要哪些依赖库文件，可能依赖的库文件libG4processes.so是32位不满足需求</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+        <div class="alignright">
+          <a href="/2018/03/20/mywork/关于libjnotify.so的版本在linux上不兼容的问题解决/#comment" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+        <div class="icon"></div>
+        
         <time datetime="2018-03-19T16:39:23.000Z"><a href="/2018/03/20/mywork/RestEasy统一异常处理问题，处理之后前端一直处于等待状态未返回异常结果/">2018-03-20</a></time>
         
   
@@ -103,49 +167,6 @@
         
         <div class="alignright">
           <a href="/2018/03/20/mywork/RestEasy统一异常处理问题，处理之后前端一直处于等待状态未返回异常结果/#comment" class="comment-link">Comments</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-        <div class="icon"></div>
-        
-        <time datetime="2018-03-19T16:39:23.000Z"><a href="/2018/03/20/mywork/sftp JSCH连接sftp出现如下报错解决办法/">2018-03-20</a></time>
-        
-  
-    <h1 class="title"><a href="/2018/03/20/mywork/sftp JSCH连接sftp出现如下报错解决办法/">sftp JSCH连接sftp出现如下报错解决办法</a></h1>
-  
-
-    </header>
-
-    <div class="entry">
-      
-        
-    <div id="toc">
-        
-    </div>
-
-        <p><strong>问题描述:</strong> sftp JSCH连接sftp出现如下报错解决办法：<br>com.jcraft.jsch.JSchException:<br>Session.connect: java.security.InvalidAlgorithmParameterException: Prime size must be multiple of 64, and can only range from 512 to 1024 (inclusive)<br>    at com.jcraft.jsch.Session.connect(Session.java:565)<br>    at com.jcraft.jsch.Session.connect(Session.java:183)<br>    …</p>
-<p><strong>解决方法：</strong><br>1、换用jdk版本为1.8<br>2、更换jsch的版本，jsch-0.1.54.jar替换为jsch-0.1.52.jar或jsch-0.1.51.jar<br>3、如果上面两种方式解决不了，就按照google说的在服务器上添加ssh 弱算法。PS：这个没有试过</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-        <div class="alignright">
-          <a href="/2018/03/20/mywork/sftp JSCH连接sftp出现如下报错解决办法/#comment" class="comment-link">Comments</a>
         </div>
         
       
@@ -249,40 +270,33 @@
     <header>
         <div class="icon"></div>
         
-        <time datetime="2018-03-14T14:42:23.000Z"><a href="/2018/03/14/hexo/2、heox博客管理/">2018-03-14</a></time>
+        <time datetime="2018-03-14T14:42:23.000Z"><a href="/2018/03/14/hexo/1、hexo使用指南/">2018-03-14</a></time>
         
   
-    <h1 class="title"><a href="/2018/03/14/hexo/2、heox博客管理/">2、heox博客管理</a></h1>
+    <h1 class="title"><a href="/2018/03/14/hexo/1、hexo使用指南/">1、hexo使用指南</a></h1>
   
 
     </header>
 
     <div class="entry">
       
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hexo-基本使用方法："><span class="toc-text">hexo 基本使用方法：</span></a></li></ol>
-    </div>
-
-        <h1 id="hexo-基本使用方法："><a href="#hexo-基本使用方法：" class="headerlink" title="hexo 基本使用方法："></a>hexo 基本使用方法：</h1><p>执行命令前，首先进入hexo init目录</p>
-<blockquote>
-<p>hexo new “postName” #新建文章</p>
-<p>hexo new page “pageName” #新建页面</p>
-<p>hexo generate #生成静态页面至public目录</p>
-<p>hexo server #开启本地预览访问端口（默认端口4000，’ctrl + c’关闭server，或者使用 -p 指定端口）</p>
-<p>hexo deploy #将.deploy目录部署到GitHub</p>
-<p>hexo help # 查看帮助</p>
-<p>hexo version #查看Hexo的版本</p>
-</blockquote>
-
+        <h1 id="hexo使用指南"><a href="#hexo使用指南" class="headerlink" title="hexo使用指南"></a>hexo使用指南</h1><h1 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h1><p>gitforwindos : <a href="https://gitforwindows.org/" target="_blank" rel="noopener">https://gitforwindows.org/</a></p>
+<p>git downloads : <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">https://git-scm.com/downloads</a><br>以上两个地址都可以下载安装，安装步骤参其他文档。</p>
+<h1 id="安装nodeJS"><a href="#安装nodeJS" class="headerlink" title="安装nodeJS"></a>安装nodeJS</h1><p>官方网址：<a href="http://nodejs.cn/download/" target="_blank" rel="noopener">http://nodejs.cn/download/</a><br>进入官方地址进行下载然后安装，安装步骤很简单，就不进行演示了。</p>
+<h1 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h1><p>在安装hexo之前假设你已经有了github账号了，以及安装了上述的git和nodejs环境。</p>
+<h2 id="创建安装目录"><a href="#创建安装目录" class="headerlink" title="创建安装目录"></a>创建安装目录</h2><p>首先需要创建一个安装目录用于安装hexo，然后我这里创建了一个<code>blog</code>目录。</p>
       
     </div>
     <footer>
       
         
+          <div class="alignleft">
+            <a href="/2018/03/14/hexo/1、hexo使用指南/#more" class="more-link">Read More</a>
+          </div>
+        
         
         <div class="alignright">
-          <a href="/2018/03/14/hexo/2、heox博客管理/#comment" class="comment-link">Comments</a>
+          <a href="/2018/03/14/hexo/1、hexo使用指南/#comment" class="comment-link">Comments</a>
         </div>
         
       
@@ -364,7 +378,7 @@
   <footer id="footer"><div class="footer-content inner">
   <div class="alignleft">
   
-    &copy; 2018 tomgs
+    &copy; 2019 tomgs
     
   </div>
   <!-- <div class="alignright">
